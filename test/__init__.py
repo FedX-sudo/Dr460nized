@@ -16,4 +16,5 @@ def ls_test():
     print("running ls thisdirdoesnotexist")
     print(shell.ls('','thisdirnotexist'))
 
-
+    print("running ls -la ~")
+    print(shell.ls('-la', '~'))
