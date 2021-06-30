@@ -12,16 +12,29 @@ def ls(args, dir):
     for match in fs:
         if dir in match:
             match = match.replace(dir,'')
-            if args.find('a') != 0:
-              out.append(match)
-
+            if match.find('/', 2) != -1:
+              match = ''
+            elif args.find('-') == 0:
+              if args.find('a') != -1:
+                out.append(match)
             elif match.replace('.','')==match:
               out.append(match)
+
 
     out.remove('')
 
 
   else:
     out = ("Error: no such file or dirrecotry")
+  if args.find('-') == 0:
+    if args.find('l', 1) != -1:
+      tmp = []
+      for i in range (0, len(out)):
+        tmp.append(out[i])
+        tmp.append('\n')
+      out = ''.join(tmp)
+
+
+
 
   return out
