@@ -5,4 +5,4 @@ strace -o test/log ./dntos.py || echo "test failed, see log for more detail."
 
 #TestCase1: Shell Scripting API
 
-strace -o test/shell.log python3 shell.py || echo "text failed, see log for more details."
+strace -o test/shell.log python3 ./test.py || echo "text failed, see log for more details."

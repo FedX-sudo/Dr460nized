@@ -2,7 +2,8 @@
 __pycache__/
 *.py[cod]
 *$py.class
-
+.log
+.kate-swap
 # C extensions
 *.so
 
