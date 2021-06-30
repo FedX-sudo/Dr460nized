@@ -1,6 +1,6 @@
-Emulate a desktop environment using pygame (web browser, email, social media)
+# Emulate a desktop environment using pygame (web browser, email, social media, comand line)
 
-Training Route (where people are trained to be safe online)
+## Training Route (where people are trained to be safe online)
 1. Phishing Attacks (Nigerian Prince)
 2. Passwords (Change Password once a year, don't make it easy)
 3. Two-Factor-Identification
@@ -8,6 +8,8 @@ Training Route (where people are trained to be safe online)
 5. Social Media
 6. Malware (don't install weird stuff)
 7. Antivirus
+8. Bassic Unix shell scripting
 
-Hacker Route (*insert name here* is a bad company that holds secrets)
-(Use what was learned above but instead of from a user's perspective it's from a hacker's perspective)
+## Hacker Route:
+
+*figure somethign out...* 
