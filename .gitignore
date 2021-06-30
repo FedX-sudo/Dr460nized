@@ -3,7 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 .log
-.kate-swp
+*.kate-swp
 # C extensions
 *.so
 
