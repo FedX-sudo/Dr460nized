@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 fs = ['/', '/usr', '/home', '/root', '/home/tempuser', '/home/tempuser/.local', '/home/tempuser/.config', '/home/tempuser/Desktop']
-workingdir = '/homme/tempuser'
+workingdir = '/home/tempuser'
 
 # Defining the ls emulation function. 
 def ls(args, dir):
@@ -9,6 +9,11 @@ def ls(args, dir):
 
   if dir == '~':
     dir = '/home/tempuser'
+  elif dir == '':
+    dir = workingdir
+  elif dir == ' ':
+    dir = workingdir
+
 
   if args.find('-') == 0:
     if args.find('l') != -1:
