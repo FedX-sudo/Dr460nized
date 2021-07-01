@@ -12,4 +12,4 @@
 
 ## Hacker Route:
 
-*figure somethign out...* 
+*figure something out...* 
