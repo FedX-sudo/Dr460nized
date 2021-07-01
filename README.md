@@ -12,4 +12,3 @@
 ## Hacker Route:
 
 1. Bassic Unix shell scripting IE ls, cd, pwd, etc. 
-
