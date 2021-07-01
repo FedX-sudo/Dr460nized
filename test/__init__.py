@@ -13,7 +13,7 @@ def ls_test():
 
     print("running ls -l /home")
     print(shell.ls('-l', '/home'))
-    if(shell.ls('-l', '/home') == "/tempuser"):
+    if(shell.ls('-l', '/home') == "/Muffin-Man"):
         print("Test Passed! \n\n")
     else:
         print("Test Failed. \n\n")
