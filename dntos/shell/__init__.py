@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
-fs = ['/', '/usr', '/home', '/root', '/home/Muffin-Man', '/home/Muffin-Man/.local', '/home/Muffin-Man/.config', '/home/Muffin-Man/Desktop']
-workingdir = '/home/Muffin-Man'
+import logging
+import toml
+import os
+
+fs = toml.load(os.getcwd() + '/dntos/resources/fs.toml')
+logging.info(toml.dumps(fs))
 
 # Defining the ls emulation function. 
 def ls(args, dir):

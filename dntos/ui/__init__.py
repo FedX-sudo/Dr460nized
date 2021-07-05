@@ -1,4 +1,5 @@
 import pygame
+import logging
 
 def dntos_ux():
   pygame.init()
@@ -41,11 +42,11 @@ def dntos_ux():
           if event.type == pygame.MOUSEBUTTONUP:
               mouse_pos = pygame.mouse.get_pos()
               if (donut.collidepoint(mouse_pos)):
-                  print("donut clicked")
+                  logging.info("donut clicked")
               if (chrome.collidepoint(mouse_pos)):
-                  print("chrome clicked")
+                  logging.info("chrome clicked")
               if (file_explorer.collidepoint(mouse_pos)):
-                  print("file_explorer clicked")
+                  logging.info("file_explorer clicked")
 
 
   pygame.quit()
