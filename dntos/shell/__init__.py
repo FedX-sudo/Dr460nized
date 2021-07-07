@@ -3,49 +3,24 @@ import logging
 import toml
 import os
 
-fs = toml.load(os.getcwd() + '/dntos/resources/fs.toml')
-logging.info(toml.dumps(fs))
-
-# Defining the ls emulation function. 
-def ls(args, dir):
-  l = False
-  a = False
-
-  if dir == '~':
-    dir = '/home/Muffin-Man'
-  elif dir == '':
-    dir = workingdir
-  elif dir == ' ':
-    dir = workingdir
+class Content(object):
+  def __init__ (self, path, privlaged, hidden, obj_type, contents):
+    self.path = path
+    self.privlaged = privlaged
+    self.hidden = hidden
+    self.obj_type = obj_type
+    self.contents = contents
 
 
-  if args.find('-') == 0:
-    if args.find('l') != -1:
-      l = True
-    if args.find('a') != -1:
-      a = True
+with open("/home/fedx/Desktop/Code/Dr460nized/dntos/shell/config.toml", "r") as f:
+    parsed_content = toml.load(f)
 
-  if dir in fs:
-    out = []
-    for match in fs:
-        if dir in match:
-            match = match.replace(dir,'')
-            if a:
-              out.append(match)
+content_parsed = toml.dumps(parsed_content)
 
-            elif match.replace('.','')==match:
-              out.append(match)
-
-    out.remove('')
+workingdir = fs[44:content_parsed.find("\n", 31)]
 
 
-  else:
-    return("Error: no such file or dirrecotry")
-  if l:
-    tmp = ['']
-    for i in range (0, len(out)):
-      tmp.append(out[i])
-      tmp.append('\n')
-    return ''.join(tmp)
-  else:
-    return out
+
+def pwd ():
+  return(wokingdir)
+

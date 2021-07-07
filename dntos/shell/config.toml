@@ -1,0 +1,13 @@
+# This is a TOML document.
+
+title = "Donut OS file system"
+
+workingdir = "/home/Muffin_Man"
+
+[root]
+path = "/"
+privlaged = true
+hidden = false
+type = "dirrectory"
+contents = "home, usr"
+
