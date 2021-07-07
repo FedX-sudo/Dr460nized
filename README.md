@@ -8,7 +8,7 @@
 5. Social Media
 6. Malware (don't install weird stuff)
 7. Antivirus
-8. Bassic Unix shell scripting
+8. Basic Unix shell scripting
 
 ## Hacker Route:
 
