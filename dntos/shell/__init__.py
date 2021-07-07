@@ -13,14 +13,33 @@ class Content(object):
 
 
 with open("/home/fedx/Desktop/Code/Dr460nized/dntos/shell/config.toml", "r") as f:
-    parsed_content = toml.load(f)
+    fs = toml.load(f)
 
-content_parsed = toml.dumps(parsed_content)
+def pwd():
+  tempvar = ["workingdir"]
+  return tempvar["path"]
 
-workingdir = fs[44:content_parsed.find("\n", 31)]
+def ls(flags, path):
+  if path == "":
+    path = fs["workingdir"]
+  elif path == " ":
+    path = fs["workingdir"]
+
+  try:
+    fs[path]
+  except:
+    return("ERROR: No such file or dirrectory")
+
+  tempvar = fs[path]
+  if tempvar["type"] == "file":
+    return tempvar["name"]
+
+  elif (flags.find("-") != -1):
+    if (flags.find("a") != -1):
+      return tempvar["contents_hidden"]
+
+  else:
+    return tempvar["contents"]
 
 
-
-def pwd ():
-  return(wokingdir)
 
