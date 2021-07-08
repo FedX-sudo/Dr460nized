@@ -14,20 +14,3 @@
 ## Hacker Route:
 
 *figure something out...* 
-
-
-
-
-
-
-
-
-
-
-
-
-
-secret area
-=======
-in this branch I will be testing how the ui looks
->>>>>>> ui
