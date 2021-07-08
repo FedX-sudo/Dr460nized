@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Emulate a desktop environment using pygame (web browser, email, social media, comand line)
 
 ## Training Route (where people are trained to be safe online)
@@ -27,3 +28,6 @@
 
 
 secret area
+=======
+in this branch I will be testing how the ui looks
+>>>>>>> ui
