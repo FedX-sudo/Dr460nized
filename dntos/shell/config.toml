@@ -1,0 +1,51 @@
+# This is a TOML document.
+
+title = "Donut OS file system"
+
+workingdir = "Muffin_Man"
+
+[root]
+name = "/"
+path = "/"
+privlaged = true
+hidden = false
+type = "dirrectory"
+contents = "home, usr"
+contents_hidden = "home, usr"
+
+[home]
+name = "home"
+path = "/home"
+privlaged = true
+hidden = false
+type = "dirrectory"
+contents = "Muffin_Man"
+contents_hidden = "Muffin_Man"
+
+[Muffin_Man]
+name = "Muffin_Man"
+path = "/home/Muffin_Man"
+privlaged = false
+hidden = false
+type = "dirrectory"
+contents = "Desktop"
+contents_hidden = ".zshrc, .local"
+
+[zshrc]
+name = ".zshrc"
+path = "/home/Muffin_Man/.zshrc"
+privlaged = false
+hidden = true
+type = "file"
+contents = "alias ll='ls -l'"
+contents_hidden = "alias ll='ls -l'"
+
+
+[desktop]
+name = "Desktop"
+path = "/home/Muffin_Man/Desktop"
+privlaged = false
+hidden = false
+type = "dirrectory"
+contents = ""
+contents_hidden = ""

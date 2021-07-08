@@ -9,8 +9,15 @@
 5. Social Media
 6. Malware (don't install weird stuff)
 7. Antivirus
+<<<<<<< HEAD
 8. Basic Unix shell scripting
 
 ## Hacker Route:
 
 *figure something out...* 
+=======
+
+## Hacker Route:
+
+1. Bassic Unix shell scripting IE ls, cd, pwd, etc. 
+>>>>>>> dev

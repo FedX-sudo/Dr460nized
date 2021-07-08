@@ -3,6 +3,7 @@ from pynput.keyboard import Key, Listener
 import threading
 import os
 
+
 pygame.init()
 
 screen = pygame.display.set_mode([1280, 720])
@@ -128,3 +129,9 @@ while run:
 
 pygame.quit()
 os._exit(0)
+
+def main():
+    logging.info("executing the dntos ui")
+    sys.exit(ui.dntos_ux())
+
+
