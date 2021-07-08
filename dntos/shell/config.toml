@@ -28,8 +28,8 @@ path = "/home/Muffin_Man"
 privlaged = false
 hidden = false
 type = "dirrectory"
-contents = "desktop"
-contents_hidden = ".zshrc"
+contents = "Desktop"
+contents_hidden = ".zshrc, .local"
 
 [zshrc]
 name = ".zshrc"
@@ -39,3 +39,13 @@ hidden = true
 type = "file"
 contents = "alias ll='ls -l'"
 contents_hidden = "alias ll='ls -l'"
+
+
+[desktop]
+name = "Desktop"
+path = "/home/Muffin_Man/Desktop"
+privlaged = false
+hidden = false
+type = "dirrectory"
+contents = ""
+contents_hidden = ""

@@ -3,14 +3,6 @@ import logging
 import toml
 import os
 
-class Content(object):
-  def __init__ (self, path, privlaged, hidden, obj_type, contents):
-    self.path = path
-    self.privlaged = privlaged
-    self.hidden = hidden
-    self.obj_type = obj_type
-    self.contents = contents
-
 
 with open("/home/fedx/Desktop/Code/Dr460nized/dntos/shell/config.toml", "r") as f:
     fs = toml.load(f)
@@ -32,6 +24,7 @@ def ls(flags, path):
 
   tempvar = fs[path]
   if tempvar["type"] == "file":
+
     return tempvar["name"]
 
   elif (flags.find("-") != -1):
@@ -43,3 +36,5 @@ def ls(flags, path):
 
 
 
+print(pwd())
+print(ls())
