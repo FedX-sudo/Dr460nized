@@ -221,7 +221,7 @@ while run:
                 level_selected = False
                 path = "T"
             try:
-                if (img_1_b.collidepoint(mouse_pos)):  # if hacker seleected path == true then only check for the hacker collider
+                if (img_1_b.collidepoint(mouse_pos)):
                     level_number = 1
                     play_level = True
             except:
