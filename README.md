@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Emulate a desktop environment using pygame (web browser, email, social media, comand line)
 
 ## Training Route (where people are trained to be safe online)
@@ -9,7 +9,7 @@
 5. Social Media
 6. Malware (don't install weird stuff)
 7. Antivirus
-<<<<<<< HEAD
+
 8. Basic Unix shell scripting
 
 ## Hacker Route:
@@ -20,4 +20,3 @@
 ## Hacker Route:
 
 1. Bassic Unix shell scripting IE ls, cd, pwd, etc. 
->>>>>>> dev
