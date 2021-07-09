@@ -2,7 +2,7 @@
 import dntos
 from dntos import shell
 from dntos.shell import commands
-from dntos.shell import parse
+
 
 def exec(args):
 
