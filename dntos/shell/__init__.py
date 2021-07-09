@@ -12,7 +12,9 @@ def exec(args):
   out = {}
 
   out["command"] = args[0:(args.find(' '))] # TODO this requires a space after the command so it is recognized, this is not the way shells work.
-  args = args[args.find(' '):len(args)]
+  args = args[args.find(' ')+1:len(args)]
 
-  out["flags"] = args[args.find('-'):args.find(' ')] # TODO Python is not finding the '-' character
+  out["flags"] = args[args.find("-")+1:args.find(' ')] # TODO this requires a space after the command so it is recognized, this is not the way shells work.
+
+
   print(out)
