@@ -5,16 +5,18 @@ from dntos.shell import commands
 from dntos.shell import parse
 
 def exec(args):
-  print(args)
+
 
   args = args[11:len(args)]
-  print(args)
+
   out = {}
 
   out["command"] = args[0:(args.find(' '))] # TODO this requires a space after the command so it is recognized, this is not the way shells work.
-  args = args[args.find(' ')+1:len(args)]
+  args = args[args.find(' '):len(args)]
+  out["flags"] = []
+  while args.find("--") != -1: #major face palm moment here, I forgot to remove the flag from the args variable...
+    out["flags"].append(args[args.find("--"):args.find(" ")])
 
-  out["flags"] = args[args.find("-")+1:args.find(' ')] # TODO this requires a space after the command so it is recognized, this is not the way shells work.
-
+    args = args[args.find("--"):args.find(" ", args.find("--"))]
 
   print(out)
