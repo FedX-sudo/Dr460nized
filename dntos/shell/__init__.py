@@ -1,40 +1,14 @@
 #!/usr/bin/env python3
-import logging
-import toml
-import os
+import dntos
+from dntos import shell
+from dntos.shell import commands
+from dntos.shell import parse
 
+def exec(args):
+  args = parse.parse_command(args)
 
-with open("/home/fedx/Desktop/Code/Dr460nized/dntos/shell/config.toml", "r") as f:
-    fs = toml.load(f)
-
-def pwd():
-  tempvar = ["workingdir"]
-  return tempvar["path"]
-
-def ls(flags, path):
-  if path == "":
-    path = fs["workingdir"]
-  elif path == " ":
-    path = fs["workingdir"]
-
+  command = args["command"]
   try:
-    fs[path]
+    commands.command(args)
   except:
-    return("ERROR: No such file or dirrectory")
-
-  tempvar = fs[path]
-  if tempvar["type"] == "file":
-
-    return tempvar["name"]
-
-  elif (flags.find("-") != -1):
-    if (flags.find("a") != -1):
-      return tempvar["contents_hidden"]
-
-  else:
-    return tempvar["contents"]
-
-
-
-print(pwd())
-print(ls())
+    return "Error command not found."

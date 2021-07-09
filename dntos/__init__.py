@@ -2,7 +2,7 @@ import pygame
 from pynput.keyboard import Key, Listener
 import threading
 import os
-
+import dntos.shell
 
 pygame.init()
 
@@ -56,9 +56,7 @@ def on_press(key):
         elif(str(key) == "Key.shift"):
             pass
         elif(str(key) == "Key.enter"):
-            print("execute command")
-            console_output_text = "*execute command for: " + console_text[11:] + "*"
-            console_text = "Muffin-Man>"
+             console_output_text = shell.exec(console_text)
         else:
             console_text += str(key).strip("''")
 
