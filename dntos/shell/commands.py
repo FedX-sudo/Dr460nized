@@ -7,14 +7,16 @@ with open(os.path.realpath("dntos/shell/config.toml"), "r") as f:
     fs = toml.load(f)
 
 def pwd(args):
-  return fs["workingdir"]
-
+   tempvar = fs["workingdir"]
+   tempvar = fs[tempvar]
+   return tempvar["path"]
 def ls(args):
-  if args["path"] == "":
+  print(args["path"])
+  if args["path"] == []:
     path = fs["workingdir"]
   elif args["path"] == "~":
     path = "Muffin_Man"
   try:
-    return(fs[path])
+    return("".join(fs["path"]))
   except:
     return("Error, no such file or directory")
