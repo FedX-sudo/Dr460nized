@@ -80,16 +80,16 @@ def on_press(key):
         if(len(console_text) < 12):
             console_text = "Muffin-Man>"
 
-def listen_for_keys():
+def listen_for_keys(): # listener for when a key is pressed to them output it in the terminal
     with Listener(
             on_press=on_press
             ) as listener:
         listener.join()
 
-t1 = threading.Thread(target=listen_for_keys)
+t1 = threading.Thread(target=listen_for_keys) # a new thread it needed because otherwise the program will kep listenting therefore the ui will not work
 t1.start()
 
-def training_route(lesson_number):
+def training_route(lesson_number): # this is the training route
     print("entering training_route")
     if(lesson_number == 1):
         print("training_route_1")
@@ -151,7 +151,7 @@ def training_route(lesson_number):
     elif(lesson_number == 8):
         print("training_route_8")
 
-def hacker_route(lesson_number):
+def hacker_route(lesson_number): # this is the hacker route
     print("entering hacker_route")
     if(lesson_number == 1):
         print("hacker_route_1")
@@ -199,7 +199,7 @@ while run:
         # print("draw some hacker stuff")
         screen.blit(img_1, [100, 100])
 
-    if(play_level == True):
+    if(play_level == True): # after selected is will start the level
         if(path == "T"):
             training_route(level_number)
         if(path == "H"):
@@ -214,12 +214,12 @@ while run:
                 print("hacker clicked")
                 path_selected = True
                 level_selected = False
-                path = "H"
+                path = "H" # makes the path to hacker
             if (training_b.collidepoint(mouse_pos)):
                 print("training clicked")
                 path_selected = True
                 level_selected = False
-                path = "T"
+                path = "T" # makes the path to training
             try:
                 if (img_1_b.collidepoint(mouse_pos)):
                     level_number = 1
