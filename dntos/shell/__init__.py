@@ -27,6 +27,9 @@ def exec(args): #defining the exec command which takes args as the input args be
       out["flags"].append(args[i]) # this appends the out dictionary with the previously found flag.
     elif args[i].find("/") != -1: # this is a very sketchy way of finding directory paths. TODO Improve this <<<<<<<<
       out["path"].append(args[i]) # This is appending the dictionary with the previously found path
+    elif args[i].find("~") != -1:
+      out["path"].append(args[i])
+
     elif args[i].find("-") != -1: # This finds flags with a single dash I.E. la -l
       out["flags"].append(args[i]) # This appends the dictionary with the previously found flag
     else: # In case something  else is in the i position of the array which was not previously checked.

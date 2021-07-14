@@ -16,7 +16,8 @@ def pwd(args): # This is defining the pwd function as a function which takes arg
    return tempvar["path"] # This is now returing path that the user is currently in
 def ls(args): # this is defining the ls function which is a function to list the stuff within directories and stuff.
   print(args["path"]) # TODO Remove this line! <<<<<<<
-  if args["path"] == []: # This is attempting to determine weather the user is wishing to list the contents of the working directory by not providing a path. This does not work, sooo TODO Fix this <<<<<<<<<<<<<<.
+  if args["path"] == []: # This is attempting to determine weather the user is wishing to list the contents of the working directory by not providing a path.
+# ^^^^^^^^^^^^^^^^^^^^^^ that line does not work for... reasons, therefore I shall make a TODO to fix it.
     path = fs["workingdir"] # This makes the path to list the contents of the working directory
   elif args["path"] == "~": # Determines if the user is wishing to list the contents of /home/Muffin_Man
     path = "Muffin_Man" # Makes the path /home/Muffin_Man
