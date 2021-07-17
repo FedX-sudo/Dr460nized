@@ -17,9 +17,7 @@ def pwd(args): # This is defining the pwd function as a function which takes arg
 def ls(args): # this is defining the ls function which is a function to list the stuff within directories and stuff.
   path = []
   tempvar = "contents"
-  print(args)
   for i in range (0, len(args["flags"])):
-    print("yo")
     if args["flags"][i].find("a") != -1:
 
       tempvar = "contents_hidden"
