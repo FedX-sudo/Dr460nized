@@ -29,7 +29,7 @@ privlaged = false
 hidden = false
 type = "dirrectory"
 contents = "Desktop"
-contents_hidden = ".zshrc, .local"
+contents_hidden = ".zshrc, .local, Desktop"
 
 [zshrc]
 name = ".zshrc"

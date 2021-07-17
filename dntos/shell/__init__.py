@@ -16,26 +16,22 @@ def exec(args): #defining the exec command which takes args as the input args be
   out = {} # defining the dictionary to port into the command's input
   out["command"] = [] # the command name, this is most assuredly required, and on top of that is the only required part of the dictionary
   out["flags"] = [] # the command's flags. See Bash flags for more details.
-  out["path"] = [] # the optional path in which the command is being executed. If no path exists it will execute in the working directory *hopefully*
   out["subcommand"] = [] # this is a catchall for additional sub-commands to be executed, optional.
   args = args.split(" ") # splitting the args variable into an array.
-
+  print(args)
   for i in range(0, len(args)): # this is a loop to append the out
+    print(len(args))
     if i == 0: # this is determining weather the for loop variable is equal to zero.
       out["command"] = args[0] # this line and the last line are used to determine the what the command is, which will always be the first command.
     elif args[i].find("--") != -1: # this is finding flags marked with two dashes IE exa --icons
       out["flags"].append(args[i]) # this appends the out dictionary with the previously found flag.
-    elif args[i].find("/") != -1: # this is a very sketchy way of finding directory paths. TODO Improve this <<<<<<<<
-      out["path"].append(args[i]) # This is appending the dictionary with the previously found path
-    elif args[i].find("~") != -1:
-      out["path"].append(args[i])
-
     elif args[i].find("-") != -1: # This finds flags with a single dash I.E. la -l
       out["flags"].append(args[i]) # This appends the dictionary with the previously found flag
     else: # In case something  else is in the i position of the array which was not previously checked.
       out["subcommand"].append(args[i]) # appending the dictionary with the previously found thing
-  try: # I love the try function! It handles errors so well, and until I started bash scripting (yes I know, full circle, right?) I did not understand what it did.
+
+  try:
     method_to_call = getattr(commands, out["command"]) # This is attempting to execute the shell command
-    return(method_to_call(out)) # This returns the output of the previous line.
-  except: # Again, so good, its just like the Bash || or && commands which are part of what make it so powerful!
-    return("Error command not found") # If the command function did not work out as hoped (meaning the function does not exist... probably) than it will return command not found.
+    return(method_to_call(out))
+  except:
+    return("Error command not found")

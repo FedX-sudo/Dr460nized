@@ -15,13 +15,22 @@ def pwd(args): # This is defining the pwd function as a function which takes arg
    tempvar = fs[tempvar] # this is redefining the tempvar as the workingdir from the file system, so that is can print the whole path
    return tempvar["path"] # This is now returing path that the user is currently in
 def ls(args): # this is defining the ls function which is a function to list the stuff within directories and stuff.
-  print(args["subcommand"]) # TODO Remove this line! <<<<<<<
-  if args["subcommand"] == []: # This is attempting to determine weather the user is wishing to list the contents of the working directory by not providing a path.
-# ^^^^^^^^^^^^^^^^^^^^^^ that line does not work for... reasons, therefore I shall make a TODO to fix it.
-    path = fs["workingdir"] # This makes the path to list the contents of the working directory
-  elif args["path"] == "~": # Determines if the user is wishing to list the contents of /home/Muffin_Man
-    path = "Muffin_Man" # Makes the path /home/Muffin_Man
-  try: # Attempts to list the path... if it exists
-    return("".join(fs["path"])) # Trying to list it.
-  except: # If it does not work...
-    return("Error, no such file or directory") # Informs the user there is no such file or directory.
+  path = []
+  tempvar = "contents"
+  print(args)
+  for i in range (0, len(args["flags"])):
+    print("yo")
+    if args["flags"][i].find("a") != -1:
+
+      tempvar = "contents_hidden"
+
+  if len(args["subcommand"]) == 0:
+      path.append(fs["workingdir"])
+  out = ""
+  for i in range(0, len(path)):
+    try:
+      out += (fs[path[i]][tempvar])
+    except:
+      out += "error" + path[i] + "no such file or directory"
+
+  return (out)
