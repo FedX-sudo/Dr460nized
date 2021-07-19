@@ -136,6 +136,7 @@ def create_screen():
                 draw_console = True
 
 def reset_screen(): # This is a function which closes all the windows.
+    global draw_console
     draw_console = False
     draw_donut = False# A random variable which does nothing. Don't delete it!
     draw_file_explorer = False# A random variable which does nothing. Don't delete it!
@@ -177,7 +178,6 @@ t1.start()
 def training_route(lesson_number): # this is the training route
     if(lesson_number == 1):
         create_screen()
-                    
     elif(lesson_number == 2):
         print("training_route_2")
     elif(lesson_number == 3):
@@ -195,52 +195,7 @@ def training_route(lesson_number): # this is the training route
 
 def hacker_route(lesson_number): # this is the hacker route
     if(lesson_number == 1):
-
-
-        screen.fill((50, 82, 123)) # background
-
-        pygame.draw.rect(screen, (10, 10, 10), pygame.Rect(0, 660, 1280, 60)) # taskbar
-
-        screen.blit(donut_img, [10, 665]) # blit? blit! What does that mean?!
-        screen.blit(chrome_img, [70, 665])
-        screen.blit(file_explorer_img, [130, 665])
-        screen.blit(console_img, [190, 665])
-
-        global draw_console
-        if (draw_console == True):
-            pygame.draw.rect(screen, (0, 0, 0), pygame.Rect(0, 40, 1280, 620))
-            pygame.draw.rect(screen, (220, 220, 220), pygame.Rect(0, 0, 1280, 40))
-            x_quit = screen.blit(x_quit_img, [1230, 5])
-            console_text_r = font.render(console_text, True, (255, 255, 255))
-            screen.blit(console_text_r, [10, 50])
-
-            console_output_text_r = font.render(console_output_text, True, (255, 255, 255))
-            screen.blit(console_output_text_r, [10, 100])
-
-
-        pygame.display.flip() # This does something, what I don't know.
-
-        for evetn in event_list: # um, what?!
-          if event.type == pygame.MOUSEBUTTONDOWN:
-                mouse_pos = pygame.mouse.get_pos()
-                try: # this is needed here because x is not always initialized
-                    if (x_quit.collidepoint(mouse_pos)):
-                        reset_screen()
-                except:
-                    pass
-                if (donut.collidepoint(mouse_pos)):
-                    reset_screen()
-                    draw_donut = True
-                if (chrome.collidepoint(mouse_pos)):
-                    reset_screen()
-                    draw_chrome = True
-                if (file_explorer.collidepoint(mouse_pos)):
-                    reset_screen()
-                    draw_file_explorer = True
-                if (console.collidepoint(mouse_pos)):
-                    reset_screen()
-                    draw_console = True
-                    
+        create_screen()
     elif(lesson_number == 2):
         print("hacker_route_2")
     elif(lesson_number == 3):
