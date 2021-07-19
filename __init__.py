@@ -16,7 +16,8 @@ pygame.display.set_caption("Donut OS emulator")
 clock = pygame.time.Clock()
 
 
-ui.img_import(screen)
+# VVVVVVVVVV Shoot! More things?! VVVVVVVVVVVVVVVVVVVV
+
 
 
 font = pygame.font.SysFont(None, 40)
@@ -251,6 +252,7 @@ os._exit(0)
 TODO list
 * TODO fix jumping to hacker route from training route at random bug.
 '''
+
 
 
 
