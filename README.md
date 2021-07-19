@@ -12,3 +12,4 @@
 ## Hacker Route:
 
 1. Bassic Unix shell scripting IE ls, cd, pwd, etc. 
+2. Password hacking game (Random number form 0 to 100 and you have to guess it. Once entered it will say number too big or small)

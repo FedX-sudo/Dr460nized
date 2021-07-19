@@ -1,6 +1,7 @@
 import pygame
 import threading
 import os
+from random import *
 
 from pynput.keyboard import Key, Listener
 
@@ -53,12 +54,26 @@ img_1 = pygame.image.load('resources/1.png')
 img_1 = pygame.transform.smoothscale(img_1, (100, 100))
 img_1_b = screen.blit(img_1, [100, 100])
 
+# This is an image which contains all of the number 2.
+img_2 = pygame.image.load('resources/2.png')
+img_2 = pygame.transform.smoothscale(img_2, (100, 100))
+img_2_b = screen.blit(img_2, [250, 100])
+
 # ^^^^^^^^^^ few that is done. ^^^^^^^^^^^^^^^^^^^^^^
 # VVVVVVVVVV Shoot! More things?! VVVVVVVVVVVVVVVVVVVV
 
+#password stuff
+password_2 = ""
 
-
+# cool font
+global font
 font = pygame.font.SysFont(None, 40)
+
+# chrome stuff
+global chrome_text
+global chrome_hint_text
+chrome_text = "Password: "
+chrome_hint_text = "Type a guess!"
 
 # This just a tad bit of house keeping to allow the console to work.
 global console_text
@@ -137,6 +152,9 @@ def create_screen():
 
 def reset_screen(): # This is a function which closes all the windows.
     global draw_console
+    global draw_donut
+    global draw_file_explorer
+    global draw_chrome
     draw_console = False
     draw_donut = False# A random variable which does nothing. Don't delete it!
     draw_file_explorer = False# A random variable which does nothing. Don't delete it!
@@ -163,7 +181,28 @@ def on_press(key): # This is a function which does things when the user does thi
             console_text = "Muffin-Man>"
 
     if(draw_chrome):
-        print(key)
+        global chrome_text
+        global chrome_hint_text
+        if(str(key) == "Key.backspace"):
+            chrome_text = chrome_text[:-1]
+        elif(str(key) == "Key.space"):
+            chrome_text += " "
+        elif(str(key) == "Key.shift"):
+            pass
+        elif(str(key) == "Key.enter"):
+            print("guess:" + chrome_text[10:])
+            if(int(password_2) == int(chrome_text[10:])):
+                chrome_hint_text = "Correct! The password was " + str(password_2)
+            elif(int(password_2) > int(chrome_text[10:])):
+                chrome_hint_text = "Password too low"
+            elif(int(password_2) < int(chrome_text[10:])):
+                chrome_hint_text = "Password too high"
+            chrome_text = "Password: "
+        else:
+            chrome_text += str(key).strip("''")
+
+        if(len(chrome_text) < 10):
+            chrome_text = "Password: "
 
 def listen_for_keys(): # listener for when a key is pressed to them output it in the terminal
     with Listener(
@@ -197,7 +236,24 @@ def hacker_route(lesson_number): # this is the hacker route
     if(lesson_number == 1):
         create_screen()
     elif(lesson_number == 2):
-        print("hacker_route_2")
+
+        create_screen()
+        global password_2
+        if(password_2 == ""):
+            password_2 = randint(0,99)
+            print("The correct password is: " + str(password_2))
+
+        if(draw_chrome == True):
+            chrome_hint_text_r = font.render(chrome_hint_text, True, (252, 172, 25))
+            screen.blit(chrome_hint_text_r, [300, 200])
+
+            chrome_q_text = "Guess the number form 0 to 99. Good luck!!"
+            chrome_q_text_r = font.render(chrome_q_text, True, (252, 172, 25))
+            screen.blit(chrome_q_text_r, [300, 50])
+
+            chrome_text_r = font.render(chrome_text, True, (93, 93, 252))
+            screen.blit(chrome_text_r, [100, 100])
+
     elif(lesson_number == 3):
         print("hacker_route_3")
     elif(lesson_number == 4):
@@ -239,6 +295,7 @@ while run:
     if (level_selected == False):
         # print("draw some hacker stuff")
         screen.blit(img_1, [100, 100])
+        screen.blit(img_2, [250, 100])
 
     if(play_level == True): # after selected is will start the level
         if(path == "T"):
@@ -264,6 +321,9 @@ while run:
             try:
                 if (img_1_b.collidepoint(mouse_pos)):
                     level_number = 1
+                    play_level = True
+                if (img_2_b.collidepoint(mouse_pos)):
+                    level_number = 2
                     play_level = True
             except:
                 pass
