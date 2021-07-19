@@ -57,7 +57,6 @@ class game():
     self.console_text= "Muffin-Man>"
     self.console_output_text = ""
 
-
   def console(self):
     pygame.draw.rect(screen, (0, 0, 0), pygame.Rect(0, 40, 1280, 620))
     pygame.draw.rect(screen, (220, 220, 220), pygame.Rect(0, 0, 1280, 40))
@@ -68,6 +67,24 @@ class game():
     self.console_output_text_r = font.render(console_output_text, True, (255, 255, 255))
     self.screen.blit(console_output_text_r, [10, 100])
 
+  def on_press(self, key): # This is a function which does things when the user does things on the keyboard.
+    if(draw_console):
+        global console_text
+        global console_output_text
+        if(str(key) == "Key.backspace"):
+            console_text = console_text[:-1]
+        elif(str(key) == "Key.space"):
+            console_text += " "
+        elif(str(key) == "Key.shift"):
+            pass
+        elif(str(key) == "Key.enter"):
+            console_output_text = console_output_text = shell.exec(console_text)
+            console_text = "Muffin-Man>"
+        else:
+            console_text += str(key).strip("''")
+
+        if(len(console_text) < 12):
+            console_text = "Muffin-Man>"
 
     pygame.display.flip() # This does something, what I don't know.
   def reset_screen(self): # This is a function which closes all the windows.
@@ -92,7 +109,6 @@ class game():
 
       for evetn in event_list: # um, what?!
         if event.type == pygame.MOUSEBUTTONDOWN:
-              print("yo #2")
               mouse_pos = pygame.mouse.get_pos()
               try: # this is needed here because x is not always initialized
                   if (x_quit.collidepoint(mouse_pos)):
@@ -129,25 +145,6 @@ def reset_screen(): # This is a function which closes all the windows.
     draw_chrome = False # A random variable which does nothing. Don't delete it! Oh and I almost forgot, this is of no association with Google, and its purely coincidence its called chrome.
 
 
-def on_press(key): # This is a function which does things when the user does things on the keyboard.
-    if(draw_console):
-        global console_text
-        global console_output_text
-        if(str(key) == "Key.backspace"):
-            console_text = console_text[:-1]
-        elif(str(key) == "Key.space"):
-            console_text += " "
-        elif(str(key) == "Key.shift"):
-            pass
-        elif(str(key) == "Key.enter"):
-            console_output_text = console_output_text = shell.exec(console_text)
-            console_text = "Muffin-Man>"
-        else:
-            console_text += str(key).strip("''")
-
-        if(len(console_text) < 12):
-            console_text = "Muffin-Man>"
-
 def listen_for_keys(): # listener for when a key is pressed to them output it in the terminal
     with Listener(
             on_press=on_press
@@ -158,12 +155,6 @@ def listen_for_keys(): # listener for when a key is pressed to them output it in
 t1  = threading.Thread(target=listen_for_keys) # a new thread it needed because otherwise the program will keep listenting therefore the ui will not work
 t1.start()
 
-
-global path_selected
-global level_selected
-global path
-global play_level
-global level_number
 path_selected = False
 level_selected = True
 path = ""
