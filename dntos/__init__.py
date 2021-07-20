@@ -62,6 +62,9 @@ class game():
     self.path = ""
     self.path_selected = False
 
+    self.console_text = "Muffin-Man>"
+    self.console_output_text = ""
+
     self.level = 0
     self.level_selected = True
 

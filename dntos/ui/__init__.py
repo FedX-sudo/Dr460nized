@@ -29,7 +29,7 @@ def create_screen(args):
         pygame.draw.rect(args.screen, (0, 0, 0), pygame.Rect(0, 40, 1280, 620))
         pygame.draw.rect(args.screen, (220, 220, 220), pygame.Rect(0, 0, 1280, 40))
         args.x_quit = args.screen.blit(args.x_quit_img, [1230, 5])
-        args.console_text_r = args.myfont.render(args.console_text, True, (255, 255, 255)) # It seems like this line gives an error because args.console_text doesn't exist
+        args.console_text_r = args.myfont.render(args.console_text, True, (255, 255, 255))
         args.screen.blit(args.console_text_r, [10, 50])
 
         args.console_output_text_r = args.myfont.render(args.console_output_text, True, (255, 255, 255))
