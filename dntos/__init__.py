@@ -1,6 +1,7 @@
 import pygame
 import threading
 import os
+from random import *
 
 from pynput.keyboard import Key, Listener
 
@@ -11,6 +12,8 @@ pygame.init()
 
 class game():
   def __init__(self):
+    self.clock = pygame.time.Clock()
+
     self.screen = pygame.display.set_mode([1280, 720])
     self.donut_img = pygame.image.load('dntos/ui/resources/donut.png')
     self.donut_img = pygame.transform.smoothscale(self.donut_img, (50, 50))
@@ -41,22 +44,89 @@ class game():
     self.img_1 = pygame.transform.smoothscale(self.img_1, (100, 100))
     self.img_1_b = self.screen.blit(self.img_1, [100, 100])
 
+    # This is an image which contains all of the number 2.
+    self.img_2 = pygame.image.load('dntos/ui/resources/2.png')
+    self.img_2 = pygame.transform.smoothscale(self.img_2, (100, 100))
+    self.img_2_b = self.screen.blit(self.img_2, [250, 100])
 
-    self.clock = pygame.time.Clock()
-    self.font = pygame.font.SysFont(None, 40)
+
     self.hacker_b = self.screen.blit(self.hacker_img, [300, 300])
+
     self.training_b = self.screen.blit(self.training_img, [900, 300])
+
+    self.path = ""
+    self.path_selected = False
+
+    self.level = 0
+    self.level_selected = True
+
+    self.play_level = False
 
 
     self.draw_console = False
     self.draw_donut = False# A random variable which does nothing. Don't delete it!
     self.draw_file_explorer = False# A random variable which does nothing. Don't delete it!
     self.draw_chrome = False # A random variable which does nothing. Don't delete it! Oh and I almost forgot, this is of no association with Google, and its purely coincidence its called chrome.
+    self.event_list = pygame.event.get()
 
 
-    self.console_text= "Muffin-Man>"
-    self.console_output_text = ""
+args = game()
 
-def main():
-  args = game()
-  ui.startup(args)
+run = True
+while run:
+  args.clock.tick(1000)
+  event_list = pygame.event.get()
+  for event in event_list:
+    if event.type == pygame.QUIT:
+      run = False
+
+  args.screen.fill((50, 82, 123))
+
+  if not args.path_selected:
+    args.screen.blit(args.hacker_img, [300, 300])
+    args.screen.blit(args.training_img, [900,300])
+
+  if not args.level_selected:
+    args.screen.blit(args.img_1, [100, 100])
+    args.screen.blit(args.img_2, [250, 100])
+
+  if args.play_level:
+    ui.play(args)
+
+  pygame.display.flip()
+  args.event_list = pygame.event.get()
+  for evnt in args.event_list:
+      if evnt.type == pygame.MOUSEBUTTONDOWN:
+          mouse_pos = pygame.mouse.get_pos()
+          if (args.hacker_b.collidepoint(mouse_pos)):
+              args.path_selected = True
+              args.level_selected = False
+              path = "H" # makes the path to hacker
+          elif (args.training_b.collidepoint(mouse_pos)):
+              args.path_selected = True
+              largs.evel_selected = False
+              path = "T" # makes the path to training
+          try:
+              print("yo")
+              if (args.img_1_b.collidepoint(mouse_pos)):
+                  args.level_number = 1
+                  args.play_level = True
+              if (img_2_b.collidepoint(mouse_pos)):
+                  args.level_number = 2
+                  args.play_level = True
+          except:
+              pass
+
+pygame.quit()
+os._exit(0)
+
+
+
+
+
+
+
+
+
+
+
