@@ -12,6 +12,8 @@ pygame.init()
 
 class game():
   def __init__(self):
+    self.myfont = pygame.font.SysFont('Comic Sans MS', 30) # Putting this here prevents an immediate error in the code, we might want to change this later though
+    
     self.clock = pygame.time.Clock()
 
     self.screen = pygame.display.set_mode([1280, 720])
@@ -22,6 +24,9 @@ class game():
     self.chrome_img = pygame.image.load('dntos/ui/resources/chrome.png') # chrome.png is of no relation to Google or any Google patents relating to Chrome. <_<
     self.chrome_img = pygame.transform.smoothscale(self.chrome_img, (50, 50))
     self.chrome = self.screen.blit(self.chrome_img, [70, 665]) # it is pure coincidence that all the internal variables for our browser thing have the same name as the most popular browser in the world, no correlation whatsoever.
+    self.chrome_logo_img = pygame.image.load('dntos/ui/resources/Comodo.png')
+    self.duck_img = pygame.image.load('dntos/ui/resources/duck.png')
+    self.duck_img = pygame.transform.smoothscale(self.duck_img, (840,600))
 
     self.file_explorer_img = pygame.image.load('dntos/ui/resources/file_explorer.png')
     self.file_explorer_img = pygame.transform.smoothscale(self.file_explorer_img, (50, 50))
@@ -104,7 +109,7 @@ while run:
               path = "H" # makes the path to hacker
           elif (args.training_b.collidepoint(mouse_pos)):
               args.path_selected = True
-              largs.evel_selected = False
+              args.level_selected = False
               path = "T" # makes the path to training
           try:
               print("yo")
