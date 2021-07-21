@@ -77,9 +77,59 @@ class game():
     self.draw_chrome = False # A random variable which does nothing. Don't delete it! Oh and I almost forgot, this is of no association with Google, and its purely coincidence its called chrome.
     self.event_list = pygame.event.get()
 
+  def on_press(self, key): # This is a function which does things when the user does things on the keyboard.
+    if(self.draw_console):
+        if(str(key) == "Key.backspace"):
+            self.console_text = self.console_text[:-1]
+        elif(str(key) == "Key.space"):
+            self.console_text += " "
+        elif(str(key) == "Key.shift"):
+            pass
+        elif(str(key) == "Key.enter"):
+            self.console_output_text = self.console_output_text = shell.exec(self.console_text)
+            self.console_text = "Muffin-Man>"
+        else:
+            self.console_text += str(key).strip("''")
+
+        if(len(self.console_text) < 12):
+            self.console_text = "Muffin-Man>"
+
+    #elif(draw_chrome):
+        #global chrome_text
+        #global chrome_hint_text
+        #if(str(key) == "Key.backspace"):
+            #chrome_text = chrome_text[:-1]
+        #elif(str(key) == "Key.space"):
+            #chrome_text += " "
+        #elif(str(key) == "Key.shift"):
+            #pass
+        #elif(str(key) == "Key.enter"):
+            #print("guess:" + chrome_text[10:])
+            #if(int(password_2) == int(chrome_text[10:])):
+                #chrome_hint_text = "Correct! The password was " + str(password_2)
+            #elif(int(password_2) > int(chrome_text[10:])):
+                #chrome_hint_text = "Password too low"
+            #elif(int(password_2) < int(chrome_text[10:])):
+                #chrome_hint_text = "Password too high"
+            #chrome_text = "Password: "
+        #else:
+            #chrome_text += str(key).strip("''")
+
+        #if(len(chrome_text) < 10):
+            #chrome_text = "Password: "
+
+  def listen_for_keys(self): # listener for when a key is pressed to them output it in the terminal
+      with Listener(
+              on_press=self.on_press
+              ) as listener:
+          listener.join()
+
+  def key_logger(self):
+    t1  = threading.Thread(target=self.listen_for_keys) # a new thread it needed because otherwise the program will keep listenting therefore the ui will not work
+    t1.start()
 
 args = game()
-
+args.key_logger()
 run = True
 while run:
   args.clock.tick(1000)
@@ -115,7 +165,6 @@ while run:
               args.level_selected = False
               path = "T" # makes the path to training
           try:
-              print("yo")
               if (args.img_1_b.collidepoint(mouse_pos)):
                   args.level_number = 1
                   args.play_level = True
