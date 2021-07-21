@@ -36,7 +36,7 @@ def create_screen(args):
         args.screen.blit(args.console_output_text_r, [10, 100])
 
     # This will open up the C0m0d0 Dr4g0n browser if the icon is clicked
-    if (args.draw_chrome):
+    elif (args.draw_chrome):
         pygame.draw.rect(args.screen, (255, 255, 255), pygame.Rect(0, 40, 1280, 620))
         pygame.draw.rect(args.screen, (220, 220, 220), pygame.Rect(0, 0, 1280, 40))
         x_quit = args.screen.blit(args.x_quit_img, [1230, 5])
@@ -49,6 +49,12 @@ def create_screen(args):
         #console_output_text_r = font.render(console_output_text, True, (255, 255, 255))
         #screen.blit(console_output_text_r, [10, 100])
 
+    elif (args.draw_donut):
+      pygame.draw.rect(args.screen, (255, 255, 255), pygame.Rect(10, 550, 200, 100))
+      args.shutdown_img = args.screen.blit(args.shutdown_img, [15, 555])
+      mouse_pos = pygame.mouse.get_pos()
+      if (args.shutdown_img.collidepoint(mouse_pos)):
+                args.run = False
 
     pygame.display.flip() # This completely reloads the screen so all previous changes like the background and taskbar are shown
 

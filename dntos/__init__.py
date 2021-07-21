@@ -45,6 +45,9 @@ class game():
     self.training_img = pygame.image.load('dntos/ui/resources/training.png')
     self.training_img = pygame.transform.smoothscale(self.training_img, (200, 200))
 
+    self.shutdown_img = pygame.image.load('dntos/ui/resources/shutdown.png')
+    self.shutdown_img = pygame.transform.smoothscale(self.shutdown_img, (50, 50))
+
     self.img_1 = pygame.image.load('dntos/ui/resources/1.png')
     self.img_1 = pygame.transform.smoothscale(self.img_1, (100, 100))
     self.img_1_b = self.screen.blit(self.img_1, [100, 100])
@@ -77,6 +80,10 @@ class game():
     self.draw_chrome = False # A random variable which does nothing. Don't delete it! Oh and I almost forgot, this is of no association with Google, and its purely coincidence its called chrome.
     self.event_list = pygame.event.get()
 
+
+    self.chrome_text = "Password: "
+    self.password_2 = "password"
+    self.chrome_hint_text = "hint"
   def on_press(self, key): # This is a function which does things when the user does things on the keyboard.
     if(self.draw_console):
         if(str(key) == "Key.backspace"):
@@ -94,29 +101,27 @@ class game():
         if(len(self.console_text) < 12):
             self.console_text = "Muffin-Man>"
 
-    #elif(draw_chrome):
-        #global chrome_text
-        #global chrome_hint_text
-        #if(str(key) == "Key.backspace"):
-            #chrome_text = chrome_text[:-1]
-        #elif(str(key) == "Key.space"):
-            #chrome_text += " "
-        #elif(str(key) == "Key.shift"):
-            #pass
-        #elif(str(key) == "Key.enter"):
-            #print("guess:" + chrome_text[10:])
-            #if(int(password_2) == int(chrome_text[10:])):
-                #chrome_hint_text = "Correct! The password was " + str(password_2)
-            #elif(int(password_2) > int(chrome_text[10:])):
-                #chrome_hint_text = "Password too low"
-            #elif(int(password_2) < int(chrome_text[10:])):
-                #chrome_hint_text = "Password too high"
-            #chrome_text = "Password: "
-        #else:
-            #chrome_text += str(key).strip("''")
+    elif(self.draw_chrome):
+        if(str(key) == "Key.backspace"):
+            self.chrome_text = self.chrome_text[:-1]
+        elif(str(key) == "Key.space"):
+            self.chrome_text += " "
+        elif(str(key) == "Key.shift"):
+            pass
+        elif(str(key) == "Key.enter"):
+            print("guess:" + self.chrome_text[10:])
+            if(int(self.password_2) == int(self.chrome_text[10:])):
+                self.chrome_hint_text = "Correct! The password was " + str(self.password_2)
+            elif(int(self.password_2) > int(self.chrome_text[10:])):
+                self.chrome_hint_text = "Password too low"
+            elif(int(self.password_2) < int(self.chrome_text[10:])):
+                self.chrome_hint_text = "Password too high"
+            self.chrome_text = "Password: "
+        else:
+            self.chrome_text += str(key).strip("''")
 
-        #if(len(chrome_text) < 10):
-            #chrome_text = "Password: "
+        if(len(self.chrome_text) < 10):
+            self.chrome_text = "Password: "
 
   def listen_for_keys(self): # listener for when a key is pressed to them output it in the terminal
       with Listener(
@@ -125,18 +130,21 @@ class game():
           listener.join()
 
   def key_logger(self):
-    t1  = threading.Thread(target=self.listen_for_keys) # a new thread it needed because otherwise the program will keep listenting therefore the ui will not work
-    t1.start()
+    self.t1  = threading.Thread(target=self.listen_for_keys) # a new thread it needed because otherwise the program will keep listenting therefore the ui will not work
+    self.t1.start()
+
 
 args = game()
 args.key_logger()
 run = True
 while run:
-  args.clock.tick(1000)
+  args.clock.tick(100000)
   event_list = pygame.event.get()
   for event in event_list:
     if event.type == pygame.QUIT:
       run = False
+      pygame.quit()
+      os._exit(0)
 
   args.screen.fill((50, 82, 123))
 
@@ -174,8 +182,7 @@ while run:
           except:
               pass
 
-pygame.quit()
-os._exit(0)
+
 
 
 
