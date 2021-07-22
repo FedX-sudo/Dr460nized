@@ -10,13 +10,17 @@ import dntos.ui
 
 pygame.init()
 
+
+
 class game():
   def __init__(self):
-    self.myfont = pygame.font.SysFont('Comic Sans MS', 30) # Putting this here prevents an immediate error in the code, we might want to change this later though
+    self.myfont = pygame.font.SysFont('Hack', 30) # Natural we needed to use the ultimate hacker font (plus bonus nerd fonts are brilliant!).
     
     self.clock = pygame.time.Clock()
 
     self.screen = pygame.display.set_mode([1280, 720])
+
+
     self.donut_img = pygame.image.load('dntos/ui/resources/donut.png')
     self.donut_img = pygame.transform.smoothscale(self.donut_img, (50, 50))
     self.donut = self.screen.blit(self.donut_img, [10, 665])
@@ -25,6 +29,7 @@ class game():
     self.chrome_img = pygame.transform.smoothscale(self.chrome_img, (50, 50))
     self.chrome = self.screen.blit(self.chrome_img, [70, 665]) # it is pure coincidence that all the internal variables for our browser thing have the same name as the most popular browser in the world, no correlation whatsoever.
     self.chrome_logo_img = pygame.image.load('dntos/ui/resources/Comodo.png')
+
     self.duck_img = pygame.image.load('dntos/ui/resources/duck.png')
     self.duck_img = pygame.transform.smoothscale(self.duck_img, (840,600))
 
@@ -38,6 +43,7 @@ class game():
 
     self.x_quit_img = pygame.image.load('dntos/ui/resources/x.png')
     self.x_quit_img = pygame.transform.smoothscale(self.x_quit_img, (30, 30))
+    self.x_quit = self.screen.blit(self.x_quit_img, [1230, 5])
 
     self.hacker_img = pygame.image.load('dntos/ui/resources/hacker.png')
     self.hacker_img = pygame.transform.smoothscale(self.hacker_img, (200, 200))
@@ -75,15 +81,18 @@ class game():
 
 
     self.draw_console = False
-    self.draw_donut = False# A random variable which does nothing. Don't delete it!
-    self.draw_file_explorer = False# A random variable which does nothing. Don't delete it!
-    self.draw_chrome = False # A random variable which does nothing. Don't delete it! Oh and I almost forgot, this is of no association with Google, and its purely coincidence its called chrome.
+    self.draw_donut = False
+    self.draw_file_explorer = False
+    self.draw_chrome = False
+
     self.event_list = pygame.event.get()
 
 
     self.chrome_text = "Password: "
     self.password_2 = "password"
     self.chrome_hint_text = "hint"
+
+
   def on_press(self, key): # This is a function which does things when the user does things on the keyboard.
     if(self.draw_console):
         if(str(key) == "Key.backspace"):
@@ -128,17 +137,22 @@ class game():
               on_press=self.on_press
               ) as listener:
           listener.join()
-
-  def key_logger(self):
+  def multithreading(self):
     self.t1  = threading.Thread(target=self.listen_for_keys) # a new thread it needed because otherwise the program will keep listenting therefore the ui will not work
+
     self.t1.start()
 
 
+
+
+
+
 args = game()
-args.key_logger()
+args.multithreading()
 run = True
 while run:
   args.clock.tick(100000)
+  args.mouse_pos = pygame.mouse.get_pos()
   event_list = pygame.event.get()
   for event in event_list:
     if event.type == pygame.QUIT:
@@ -162,35 +176,39 @@ while run:
   pygame.display.flip()
   args.event_list = pygame.event.get()
   for evnt in args.event_list:
+
       if evnt.type == pygame.MOUSEBUTTONDOWN:
-          mouse_pos = pygame.mouse.get_pos()
-          if (args.hacker_b.collidepoint(mouse_pos)):
+
+          if (args.hacker_b.collidepoint(args.mouse_pos)):
               args.path_selected = True
               args.level_selected = False
               path = "H" # makes the path to hacker
-          elif (args.training_b.collidepoint(mouse_pos)):
+          elif (args.training_b.collidepoint(args.mouse_pos)):
               args.path_selected = True
               args.level_selected = False
               path = "T" # makes the path to training
+          elif (args.x_quit.collidepoint(args.mouse_pos)):
+              ui.reset_screen(args)
+          elif (args.donut.collidepoint(args.mouse_pos)):
+              ui.reset_screen(args)
+              args.draw_donut = True
+          elif (args.chrome.collidepoint(args.mouse_pos)):
+              ui.reset_screen(args)
+              args.draw_chrome = True
+          elif (args.file_explorer.collidepoint(args.mouse_pos)):
+              ui.reset_screen(args)
+              args.draw_file_explorer = True
+          elif (args.console.collidepoint(args.mouse_pos)):
+              ui.reset_screen(args)
+              args.draw_console = True
           try:
-              if (args.img_1_b.collidepoint(mouse_pos)):
+              if (args.img_1_b.collidepoint(args.mouse_pos)):
                   args.level_number = 1
                   args.play_level = True
-              if (img_2_b.collidepoint(mouse_pos)):
+              elif (img_2_b.collidepoint(args.mouse_pos)):
                   args.level_number = 2
                   args.play_level = True
+              elif (args.x_quit.collidepoint(args.mouse_pos)):
+                  ui.reset_screen(args)
           except:
               pass
-
-
-
-
-
-
-
-
-
-
-
-
-

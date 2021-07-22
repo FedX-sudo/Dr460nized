@@ -19,7 +19,6 @@ def exec(args): #defining the exec command which takes args as the input args be
   out["subcommand"] = [] # this is a catchall for additional sub-commands to be executed, optional.
   args = args.split(" ") # splitting the args variable into an array.
   for i in range(0, len(args)): # this is a loop to append the out
-    print(len(args))
     if i == 0: # this is determining weather the for loop variable is equal to zero.
       out["command"] = args[0] # this line and the last line are used to determine the what the command is, which will always be the first command.
     elif args[i].find("--") != -1: # this is finding flags marked with two dashes IE exa --icons
