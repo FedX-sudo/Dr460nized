@@ -14,6 +14,16 @@ def reset_screen(args): # This is a function which closes all the windows.
 def play(args):
     ''' Creates the desktop that all versions of the hacker and training route will utilize'''
 
+    if(args.level_number == 1 and args.path == "H"):
+        print("H - 1")
+    elif(args.level_number == 2 and args.path == "H"):
+        print("H - 2")
+    
+    if(args.level_number == 1 and args.path == "T"):
+        print("T - 1")
+    elif(args.level_number == 2 and args.path == "T"):
+        print("T - 2")
+
     args.screen.fill((50, 82, 123)) # background
 
     pygame.draw.rect(args.screen, (10, 10, 10), pygame.Rect(0, 660, 1280, 60)) # taskbar

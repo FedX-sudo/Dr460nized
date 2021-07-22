@@ -182,11 +182,11 @@ while run:
           if (args.hacker_b.collidepoint(args.mouse_pos)):
               args.path_selected = True
               args.level_selected = False
-              path = "H" # makes the path to hacker
+              args.path = "H" # makes the path to hacker
           elif (args.training_b.collidepoint(args.mouse_pos)):
               args.path_selected = True
               args.level_selected = False
-              path = "T" # makes the path to training
+              args.path = "T" # makes the path to training
           elif (args.x_quit.collidepoint(args.mouse_pos)):
               ui.reset_screen(args)
           elif (args.donut.collidepoint(args.mouse_pos)):
