@@ -205,7 +205,7 @@ while run:
               if (args.img_1_b.collidepoint(args.mouse_pos)):
                   args.level_number = 1
                   args.play_level = True
-              elif (img_2_b.collidepoint(args.mouse_pos)):
+              elif (args.img_2_b.collidepoint(args.mouse_pos)):
                   args.level_number = 2
                   args.play_level = True
               elif (args.x_quit.collidepoint(args.mouse_pos)):
