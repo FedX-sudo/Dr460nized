@@ -14,16 +14,6 @@ def reset_screen(args): # This is a function which closes all the windows.
 def play(args):
     ''' Creates the desktop that all versions of the hacker and training route will utilize'''
 
-    if(args.level_number == 1 and args.path == "H"):
-        print("H - 1")
-    elif(args.level_number == 2 and args.path == "H"):
-        print("H - 2")
-    
-    if(args.level_number == 1 and args.path == "T"):
-        print("T - 1")
-    elif(args.level_number == 2 and args.path == "T"):
-        print("T - 2")
-
     args.screen.fill((50, 82, 123)) # background
 
     pygame.draw.rect(args.screen, (10, 10, 10), pygame.Rect(0, 660, 1280, 60)) # taskbar
@@ -52,8 +42,7 @@ def play(args):
         pygame.draw.rect(args.screen, (220, 220, 220), pygame.Rect(0, 0, 1280, 40))
         args.x_quit = args.screen.blit(args.x_quit_img, [1230, 5])
 
-        args.screen.blit(args.duck_img, [550, 50])
-        args.screen.blit(args.chrome_logo_img, [355, 150])
+
         #console_text_r = font.render(console_text, True, (255, 255, 255))
         #screen.blit(console_text_r, [10, 50])
 
@@ -66,6 +55,20 @@ def play(args):
       #mouse_pos = pygame.mouse.get_pos()
       #if (args.shutdown_img.collidepoint(mouse_pos)):
                 #args.run = False
+
+    if(args.level_number == 1 and args.path == "H"):
+        print("H - 1")
+
+    elif(args.level_number == 2 and args.path == "H"):
+        print("H - 2")
+    
+    if(args.level_number == 1 and args.path == "T"):
+#        print("T - 1")
+        if(args.draw_chrome):
+            args.screen.blit(args.duck_img, [550, 50])
+            args.screen.blit(args.chrome_logo_img, [355, 150])
+    elif(args.level_number == 2 and args.path == "T"):
+        print("T - 2")
 
     pygame.display.flip() # This completely reloads the screen so all previous changes like the background and taskbar are shown
 
