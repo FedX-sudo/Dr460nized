@@ -89,8 +89,8 @@ class game():
 
 
     self.chrome_text = "Password: "
-    self.password_2 = "password"
-    self.chrome_hint_text = "hint"
+    self.password_2 = ""
+    self.chrome_hint_text = "Type a guess!"
 
 
   def on_press(self, key): # This is a function which does things when the user does things on the keyboard.
