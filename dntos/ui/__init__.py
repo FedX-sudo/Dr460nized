@@ -62,14 +62,14 @@ def play(args):
 
     elif(args.level_number == 2 and args.path == "H"):
         if(args.password_2 == ""):
-            args.password_2 = randint(0,99)
+            args.password_2 = randint(0,100)
             print("The correct password is: " + str(args.password_2))
 
-        if(args.draw_chrome == True):
+        if(args.draw_chrome):
             args.chrome_hint_text_r = args.myfont.render(args.chrome_hint_text, True, (252, 172, 25))
             args.screen.blit(args.chrome_hint_text_r, [300, 200])
 
-            args.chrome_q_text = "Guess the number form 0 to 99. Good luck!!"
+            args.chrome_q_text = "Guess the number form 0 to 100. Good luck!!"
             args.chrome_q_text_r = args.myfont.render(args.chrome_q_text, True, (252, 172, 25))
             args.screen.blit(args.chrome_q_text_r, [300, 50])
 
@@ -81,7 +81,9 @@ def play(args):
             args.screen.blit(args.duck_img, [550, 50])
             args.screen.blit(args.chrome_logo_img, [355, 150])
     elif(args.level_number == 2 and args.path == "T"):
-        pass
+        if(args.draw_chrome):
+            args.screen.blit(args.img_yes, [550, 50])
+            args.screen.blit(args.img_no, [355, 150])
 
     pygame.display.flip() # This completely reloads the screen so all previous changes like the background and taskbar are shown
 
