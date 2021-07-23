@@ -82,8 +82,29 @@ def play(args):
             args.screen.blit(args.chrome_logo_img, [355, 150])
     elif(args.level_number == 2 and args.path == "T"):
         if(args.draw_chrome):
-            args.screen.blit(args.img_yes, [550, 50])
-            args.screen.blit(args.img_no, [355, 150])
+            args.screen.blit(args.img_yes, [500, 550])
+            args.screen.blit(args.img_no, [700, 550])
+            if(args.chrome_m_question == 1):
+                args.chrome_m_text_1 = "question 1"
+                args.chrome_m_text_2 = "question 1"
+                args.chrome_m_text_3 = "question 1"
+                if(args.chrome_m_choice == "y"):
+                    args.chrome_m_choice = ""
+                    args.chrome_m_question = 2
+            elif(args.chrome_m_question == 2):
+                args.chrome_m_text_1 = "question 2"
+                args.chrome_m_text_2 = "question 2"
+                args.chrome_m_text_3 = "question 2"
+                if(args.chrome_m_choice == "n"):
+                    args.chrome_m_choice = ""
+                    args.chrome_m_question = 3
+
+            args.chrome_m_text_1_r = args.myfont.render(args.chrome_m_text_1, True, (0, 0, 0))
+            args.screen.blit(args.chrome_m_text_1_r, [600, 100])
+            args.chrome_m_text_2_r = args.myfont.render(args.chrome_m_text_2, True, (0, 0, 0))
+            args.screen.blit(args.chrome_m_text_2_r, [600, 150])
+            args.chrome_m_text_3_r = args.myfont.render(args.chrome_m_text_3, True, (0, 0, 0))
+            args.screen.blit(args.chrome_m_text_3_r, [600, 200])
 
     pygame.display.flip() # This completely reloads the screen so all previous changes like the background and taskbar are shown
 

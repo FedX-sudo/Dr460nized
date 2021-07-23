@@ -65,11 +65,14 @@ class game():
 
     #yes and no images
     self.img_no = pygame.image.load('dntos/ui/resources/no.png')
-    self.img_no = pygame.transform.smoothscale(self.img_no, (300, 300))
+    self.img_no = pygame.transform.smoothscale(self.img_no, (100, 100))
+    self.img_no_b = self.screen.blit(self.img_no, [700, 550])
 
     self.img_yes = pygame.image.load('dntos/ui/resources/yes.png')
-    self.img_yes = pygame.transform.smoothscale(self.img_yes, (300, 300))
+    self.img_yes = pygame.transform.smoothscale(self.img_yes, (100, 100))
+    self.img_yes_b = self.screen.blit(self.img_yes, [500, 550])
 
+    # hacker training images
     self.hacker_b = self.screen.blit(self.hacker_img, [300, 300])
 
     self.training_b = self.screen.blit(self.training_img, [900, 300])
@@ -99,9 +102,11 @@ class game():
     self.chrome_hint_text = "Type a guess!"
 
     # training level 2
-    self.chrome_text_1 = "field 1"
-    self.chrome_text_2 = "field 2"
-    self.chrome_text_3 = "field 3"
+    self.chrome_m_text_1 = "field 1"
+    self.chrome_m_text_2 = "field 2"
+    self.chrome_m_text_3 = "field 3"
+    self.chrome_m_question = 1
+    self.chrome_m_choice = ""
 
 
   def on_press(self, key): # This is a function which does things when the user does things on the keyboard.
@@ -193,7 +198,6 @@ while run:
   for evnt in args.event_list:
 
       if evnt.type == pygame.MOUSEBUTTONDOWN:
-
           if (args.hacker_b.collidepoint(args.mouse_pos) and args.path_selected == False):
               args.path_selected = True
               args.level_selected = False
@@ -225,5 +229,12 @@ while run:
                   args.play_level = True
               elif (args.x_quit.collidepoint(args.mouse_pos)):
                   ui.reset_screen(args)
+          except:
+              pass
+          try:
+              if(args.level_number == 2 and args.path == "T" and args.draw_chrome == True and args.img_yes_b.collidepoint(args.mouse_pos)):
+                  args.chrome_m_choice = "y"
+              if(args.level_number == 2 and args.path == "T" and args.draw_chrome == True and args.img_no_b.collidepoint(args.mouse_pos)):
+                  args.chrome_m_choice = "n"
           except:
               pass
