@@ -57,18 +57,17 @@ def play(args):
                 #args.run = False
 
     if(args.level_number == 1 and args.path == "H"):
-        print("H - 1")
+      pass
 
     elif(args.level_number == 2 and args.path == "H"):
-        print("H - 2")
+        pass
     
     if(args.level_number == 1 and args.path == "T"):
-#        print("T - 1")
         if(args.draw_chrome):
             args.screen.blit(args.duck_img, [550, 50])
             args.screen.blit(args.chrome_logo_img, [355, 150])
     elif(args.level_number == 2 and args.path == "T"):
-        print("T - 2")
+        pass
 
     pygame.display.flip() # This completely reloads the screen so all previous changes like the background and taskbar are shown
 

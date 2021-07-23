@@ -151,7 +151,7 @@ args = game()
 args.multithreading()
 run = True
 while run:
-  args.clock.tick(100000)
+  args.clock.tick(256)
   args.mouse_pos = pygame.mouse.get_pos()
   event_list = pygame.event.get()
   for event in event_list:
