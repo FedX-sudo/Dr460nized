@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import pygame
+from random import *
 # UI Elements such as applications
 # This is a small chunk of code which will define the donut
 
@@ -60,7 +61,20 @@ def play(args):
       pass
 
     elif(args.level_number == 2 and args.path == "H"):
-        pass
+        if(args.password_2 == ""):
+            args.password_2 = randint(0,99)
+            print("The correct password is: " + str(args.password_2))
+
+        if(args.draw_chrome == True):
+            args.chrome_hint_text_r = args.myfont.render(args.chrome_hint_text, True, (252, 172, 25))
+            args.screen.blit(args.chrome_hint_text_r, [300, 200])
+
+            args.chrome_q_text = "Guess the number form 0 to 99. Good luck!!"
+            args.chrome_q_text_r = args.myfont.render(args.chrome_q_text, True, (252, 172, 25))
+            args.screen.blit(args.chrome_q_text_r, [300, 50])
+
+            args.chrome_text_r = args.myfont.render(args.chrome_text, True, (93, 93, 252))
+            args.screen.blit(args.chrome_text_r, [100, 100])
     
     if(args.level_number == 1 and args.path == "T"):
         if(args.draw_chrome):

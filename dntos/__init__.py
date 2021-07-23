@@ -89,8 +89,8 @@ class game():
 
 
     self.chrome_text = "Password: "
-    self.password_2 = "password"
-    self.chrome_hint_text = "hint"
+    self.password_2 = 5010
+    self.chrome_hint_text = "Type a guess!"
 
 
   def on_press(self, key): # This is a function which does things when the user does things on the keyboard.
@@ -118,13 +118,15 @@ class game():
         elif(str(key) == "Key.shift"):
             pass
         elif(str(key) == "Key.enter"):
-            print("guess:" + self.chrome_text[10:])
-            if(int(self.password_2) == int(self.chrome_text[10:])):
-                self.chrome_hint_text = "Correct! The password was " + str(self.password_2)
-            elif(int(self.password_2) > int(self.chrome_text[10:])):
-                self.chrome_hint_text = "Password too low"
-            elif(int(self.password_2) < int(self.chrome_text[10:])):
-                self.chrome_hint_text = "Password too high"
+            try:
+              if(int(self.password_2) == int(self.chrome_text[10:])):
+                  self.chrome_hint_text = "Correct! The password was " + str(self.password_2)
+              elif(int(self.password_2) > int(self.chrome_text[10:])):
+                  self.chrome_hint_text = "Password too low"
+              elif(int(self.password_2) < int(self.chrome_text[10:])):
+                  self.chrome_hint_text = "Password too high"
+            except:
+              self.chrome_hint_text = "Password must be a number"
             self.chrome_text = "Password: "
         else:
             self.chrome_text += str(key).strip("''")
