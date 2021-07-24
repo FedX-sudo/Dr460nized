@@ -108,9 +108,9 @@ def play(args):
                     args.chrome_m_question = 1
                     reset_screen(args)
             elif(args.chrome_m_question == 3):
-                args.chrome_m_text_1 = "question 3"
-                args.chrome_m_text_2 = "question 3"
-                args.chrome_m_text_3 = "question 3"
+                args.chrome_m_text_1 = "You want to analyse your network and learn how it works."
+                args.chrome_m_text_2 = "You search and find a program called wireshark on \"wireshark.org\"."
+                args.chrome_m_text_3 = "The software is opensource and has a lot of history. Should you download it?"
                 if(args.chrome_m_choice == "y"): # correct choice
                     args.chrome_m_choice = ""
                     args.chrome_m_question = 4
@@ -119,20 +119,20 @@ def play(args):
                     args.chrome_m_question = 1
                     reset_screen(args)
             elif(args.chrome_m_question == 4):
-                args.chrome_m_text_1 = "question 4"
-                args.chrome_m_text_2 = "question 4"
-                args.chrome_m_text_3 = "question 4"
-                if(args.chrome_m_choice == "y"): # correct choice
+                args.chrome_m_text_1 = "You want to edit some photos using photoshop but have no money :("
+                args.chrome_m_text_2 = "You find a website which claims to give it for free."
+                args.chrome_m_text_3 = "Should you download it?"
+                if(args.chrome_m_choice == "n"): # correct choice
                     args.chrome_m_choice = ""
                     args.chrome_m_question = 5
-                elif(args.chrome_m_choice == "n"): # wrong choice
+                elif(args.chrome_m_choice == "y"): # wrong choice
                     args.chrome_m_choice = ""
                     args.chrome_m_question = 1
                     reset_screen(args)
             elif(args.chrome_m_question == 5):
-                args.chrome_m_text_1 = "question 5"
-                args.chrome_m_text_2 = "question 5"
-                args.chrome_m_text_3 = "question 5"
+                args.chrome_m_text_1 = "You want to watch an .mp4 but don't like the defualt player."
+                args.chrome_m_text_2 = "You search and find a program called VLC media player on \"videolan.org\"."
+                args.chrome_m_text_3 = "The software is opensource and you heard of it before. Should you download it?"
                 if(args.chrome_m_choice == "y"): # correct choice
                     args.chrome_m_choice = ""
                     args.chrome_m_question = 6
