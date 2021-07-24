@@ -208,9 +208,14 @@ while run:
               args.path = "T" # makes the path to training
           elif (args.x_quit.collidepoint(args.mouse_pos)):
               ui.reset_screen(args)
-          elif (args.donut.collidepoint(args.mouse_pos)):
+          elif (args.donut.collidepoint(args.mouse_pos)): # clicking the donut will go back to level selection
               ui.reset_screen(args)
               args.draw_donut = True
+
+              args.play_level = False
+              args.path_selected = False
+              args.level_selected = True
+              args.path = ""
           elif (args.chrome.collidepoint(args.mouse_pos)):
               ui.reset_screen(args)
               args.draw_chrome = True
