@@ -62,14 +62,13 @@ def play(args):
 
     elif(args.level_number == 2 and args.path == "H"):
         if(args.password_2 == ""):
-            args.password_2 = randint(0,99)
-            print("The correct password is: " + str(args.password_2))
+            args.password_2 = randint(0,100)
 
-        if(args.draw_chrome == True):
+        if(args.draw_chrome):
             args.chrome_hint_text_r = args.myfont.render(args.chrome_hint_text, True, (252, 172, 25))
             args.screen.blit(args.chrome_hint_text_r, [300, 200])
 
-            args.chrome_q_text = "Guess the number form 0 to 99. Good luck!!"
+            args.chrome_q_text = "Guess the number form 0 to 100. Good luck!!"
             args.chrome_q_text_r = args.myfont.render(args.chrome_q_text, True, (252, 172, 25))
             args.screen.blit(args.chrome_q_text_r, [300, 50])
 
@@ -81,7 +80,77 @@ def play(args):
             args.screen.blit(args.duck_img, [550, 50])
             args.screen.blit(args.chrome_logo_img, [355, 150])
     elif(args.level_number == 2 and args.path == "T"):
-        pass
+        if(args.draw_chrome):
+            if(args.chrome_m_question != 6):
+                args.screen.blit(args.img_yes, [500, 550])
+                args.screen.blit(args.img_no, [700, 550])
+            if(args.chrome_m_question == 1):
+                args.chrome_m_text_1 = "Let's say you want to download another browser and go to"
+                args.chrome_m_text_2 = "a website called \"browsetheworld.io\"" # unknown publisher / don't trust them with your browsing data
+                args.chrome_m_text_3 = "You never heard of this browser before, should you download it?"
+                if(args.chrome_m_choice == "n"): # correct choice
+                    args.chrome_m_choice = ""
+                    args.chrome_m_question = 2
+                elif(args.chrome_m_choice == "y"): # wrong choice
+                    args.chrome_m_choice = ""
+                    args.chrome_m_question = 1
+                    reset_screen(args)
+            elif(args.chrome_m_question == 2):
+                args.chrome_m_text_1 = "You search for an image editor called gimp recommended by a friend."
+                args.chrome_m_text_2 = "You see that you can download it from \"softwareforall.net\"" # downloading good software from a random site
+                args.chrome_m_text_3 = "The website however, looks wierd. Should you download it?"
+                if(args.chrome_m_choice == "n"): # correct choice
+                    args.chrome_m_choice = ""
+                    args.chrome_m_question = 3
+                elif(args.chrome_m_choice == "y"): # wrong choice
+                    args.chrome_m_choice = ""
+                    args.chrome_m_question = 1
+                    reset_screen(args)
+            elif(args.chrome_m_question == 3):
+                args.chrome_m_text_1 = "You want to analyse your network and learn how it works."
+                args.chrome_m_text_2 = "You search and find a program called wireshark on \"wireshark.org\"."
+                args.chrome_m_text_3 = "The software is opensource and has a lot of history. Should you download it?"
+                if(args.chrome_m_choice == "y"): # correct choice
+                    args.chrome_m_choice = ""
+                    args.chrome_m_question = 4
+                elif(args.chrome_m_choice == "n"): # wrong choice
+                    args.chrome_m_choice = ""
+                    args.chrome_m_question = 1
+                    reset_screen(args)
+            elif(args.chrome_m_question == 4):
+                args.chrome_m_text_1 = "You want to edit some photos using photoshop but have no money :("
+                args.chrome_m_text_2 = "You find a website which claims to give it for free."
+                args.chrome_m_text_3 = "Should you download it?"
+                if(args.chrome_m_choice == "n"): # correct choice
+                    args.chrome_m_choice = ""
+                    args.chrome_m_question = 5
+                elif(args.chrome_m_choice == "y"): # wrong choice
+                    args.chrome_m_choice = ""
+                    args.chrome_m_question = 1
+                    reset_screen(args)
+            elif(args.chrome_m_question == 5):
+                args.chrome_m_text_1 = "You want to watch an .mp4 but don't like the defualt player."
+                args.chrome_m_text_2 = "You search and find a program called VLC media player on \"videolan.org\"."
+                args.chrome_m_text_3 = "The software is opensource and you heard of it before. Should you download it?"
+                if(args.chrome_m_choice == "y"): # correct choice
+                    args.chrome_m_choice = ""
+                    args.chrome_m_question = 6
+                elif(args.chrome_m_choice == "n"): # wrong choice
+                    args.chrome_m_choice = ""
+                    args.chrome_m_question = 1
+                    reset_screen(args)
+            elif(args.chrome_m_question == 6):
+                args.chrome_m_text_1 = "Good Job!"
+                args.chrome_m_text_2 = "You completed this level."
+                args.chrome_m_text_3 = ""
+
+
+            args.chrome_m_text_1_r = args.myfont.render(args.chrome_m_text_1, True, (0, 0, 0))
+            args.screen.blit(args.chrome_m_text_1_r, [400, 100])
+            args.chrome_m_text_2_r = args.myfont.render(args.chrome_m_text_2, True, (0, 0, 0))
+            args.screen.blit(args.chrome_m_text_2_r, [400, 150])
+            args.chrome_m_text_3_r = args.myfont.render(args.chrome_m_text_3, True, (0, 0, 0))
+            args.screen.blit(args.chrome_m_text_3_r, [400, 200])
 
     pygame.display.flip() # This completely reloads the screen so all previous changes like the background and taskbar are shown
 

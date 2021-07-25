@@ -64,7 +64,16 @@ class game():
     self.img_2 = pygame.transform.smoothscale(self.img_2, (100, 100))
     self.img_2_b = self.screen.blit(self.img_2, [250, 100])
 
+    #yes and no images
+    self.img_no = pygame.image.load('dntos/ui/resources/no.png')
+    self.img_no = pygame.transform.smoothscale(self.img_no, (100, 100))
+    self.img_no_b = self.screen.blit(self.img_no, [700, 550])
 
+    self.img_yes = pygame.image.load('dntos/ui/resources/yes.png')
+    self.img_yes = pygame.transform.smoothscale(self.img_yes, (100, 100))
+    self.img_yes_b = self.screen.blit(self.img_yes, [500, 550])
+
+    # hacker training images
     self.hacker_b = self.screen.blit(self.hacker_img, [300, 300])
 
     self.training_b = self.screen.blit(self.training_img, [900, 300])
@@ -90,8 +99,15 @@ class game():
 
 
     self.chrome_text = "Password: "
-    self.password_2 = 5010
+    self.password_2 = "" # supposed to be empty
     self.chrome_hint_text = "Type a guess!"
+
+    # training level 2
+    self.chrome_m_text_1 = "field 1"
+    self.chrome_m_text_2 = "field 2"
+    self.chrome_m_text_3 = "field 3"
+    self.chrome_m_question = 1
+    self.chrome_m_choice = ""
 
 
   def on_press(self, key): # This is a function which does things when the user does things on the keyboard.
@@ -112,28 +128,30 @@ class game():
             self.console_text = "Muffin-Man>"
 
     elif(self.draw_chrome):
-        if(str(key) == "Key.backspace"):
-            self.chrome_text = self.chrome_text[:-1]
-        elif(str(key) == "Key.space"):
-            self.chrome_text += " "
-        elif(str(key) == "Key.shift"):
-            pass
-        elif(str(key) == "Key.enter"):
-            try:
-              if(int(self.password_2) == int(self.chrome_text[10:])):
-                  self.chrome_hint_text = "Correct! The password was " + str(self.password_2)
-              elif(int(self.password_2) > int(self.chrome_text[10:])):
-                  self.chrome_hint_text = "Password too low"
-              elif(int(self.password_2) < int(self.chrome_text[10:])):
-                  self.chrome_hint_text = "Password too high"
-            except:
-              self.chrome_hint_text = "Password must be a number"
-            self.chrome_text = "Password: "
-        else:
-            self.chrome_text += str(key).strip("''")
+        if(args.level_number == 2 and args.path == "H"):
+            if(str(key) == "Key.backspace"):
+                self.chrome_text = self.chrome_text[:-1]
+            elif(str(key) == "Key.space"):
+                self.chrome_text += " "
+            elif(str(key) == "Key.shift"):
+                pass
+            elif(str(key) == "Key.enter"):
+                try:
+                  if(int(self.password_2) == int(self.chrome_text[10:])):
+                      self.chrome_hint_text = "Correct! The password was " + str(self.password_2)
+                  elif(int(self.password_2) > int(self.chrome_text[10:])):
+                      self.chrome_hint_text = "Password too low"
+                  elif(int(self.password_2) < int(self.chrome_text[10:])):
+                      self.chrome_hint_text = "Password too high"
+                except:
+                  self.chrome_hint_text = "Password must be a number"
+                self.chrome_text = "Password: "
+            else:
+                self.chrome_text += str(key).strip("''")
 
-        if(len(self.chrome_text) < 10):
-            self.chrome_text = "Password: "
+            if(len(self.chrome_text) < 10):
+                self.chrome_text = "Password: "
+            
 
   def listen_for_keys(self): # listener for when a key is pressed to them output it in the terminal
       with Listener(
@@ -181,20 +199,24 @@ while run:
   for evnt in args.event_list:
 
       if evnt.type == pygame.MOUSEBUTTONDOWN:
-
-          if (args.hacker_b.collidepoint(args.mouse_pos)):
+          if (args.hacker_b.collidepoint(args.mouse_pos) and args.path_selected == False):
               args.path_selected = True
               args.level_selected = False
               args.path = "H" # makes the path to hacker
-          elif (args.training_b.collidepoint(args.mouse_pos)):
+          elif(args.training_b.collidepoint(args.mouse_pos) and args.path_selected == False):
               args.path_selected = True
               args.level_selected = False
               args.path = "T" # makes the path to training
           elif (args.x_quit.collidepoint(args.mouse_pos)):
               ui.reset_screen(args)
-          elif (args.donut.collidepoint(args.mouse_pos)):
+          elif (args.donut.collidepoint(args.mouse_pos)): # clicking the donut will go back to level selection
               ui.reset_screen(args)
               args.draw_donut = True
+
+              args.play_level = False
+              args.path_selected = False
+              args.level_selected = True
+              args.path = ""
           elif (args.chrome.collidepoint(args.mouse_pos)):
               ui.reset_screen(args)
               args.draw_chrome = True
@@ -216,5 +238,12 @@ while run:
               elif (args.shutdown.collidepoint(mouse_pos)):
                   pygame.quit()
                   os._exit(0)
+          except:
+              pass
+          try:
+              if(args.level_number == 2 and args.path == "T" and args.draw_chrome == True and args.img_yes_b.collidepoint(args.mouse_pos)):
+                  args.chrome_m_choice = "y"
+              if(args.level_number == 2 and args.path == "T" and args.draw_chrome == True and args.img_no_b.collidepoint(args.mouse_pos)):
+                  args.chrome_m_choice = "n"
           except:
               pass
