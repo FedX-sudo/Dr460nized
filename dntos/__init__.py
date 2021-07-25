@@ -244,6 +244,9 @@ while run:
                   ui.reset_screen(args)
               elif (args.mail_img.collidepoint(args.mouse_pos)):
                 print('yes')
+              elif (args.shutdown.collidepoint(mouse_pos)):
+                  pygame.quit()
+                  os._exit(0)
           except:
               pass
           try:
