@@ -51,12 +51,9 @@ def play(args):
         #console_output_text_r = font.render(console_output_text, True, (255, 255, 255))
         #screen.blit(console_output_text_r, [10, 100])
 
-    #elif (args.draw_donut):
-      #pygame.draw.rect(args.screen, (255, 255, 255), pygame.Rect(10, 550, 200, 100))
-      #args.shutdown_img = args.screen.blit(args.shutdown_img, [15, 555])
-      #mouse_pos = pygame.mouse.get_pos()
-      #if (args.shutdown_img.collidepoint(mouse_pos)):
-                #args.run = False
+    elif (args.draw_donut):
+      pygame.draw.rect(args.screen, (255, 255, 255), pygame.Rect(10, 550, 200, 100))
+      args.shutdown = args.screen.blit(args.shutdown_img, [1230, 5])
 
     if(args.level_number == 1 and args.path == "H"):
       pass
@@ -64,7 +61,6 @@ def play(args):
     elif(args.level_number == 2 and args.path == "H"):
         if(args.password_2 == ""):
             args.password_2 = randint(0,100)
-            print("The correct password is: " + str(args.password_2))
 
         if(args.draw_chrome):
             args.chrome_hint_text_r = args.myfont.render(args.chrome_hint_text, True, (252, 172, 25))
