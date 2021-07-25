@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import pygame
 from random import *
+from playsound import playsound
 # UI Elements such as applications
 # This is a small chunk of code which will define the donut
 
@@ -77,9 +78,20 @@ def play(args):
             args.screen.blit(args.chrome_text_r, [100, 100])
     
     if(args.level_number == 1 and args.path == "T"):
-        if(args.draw_chrome):
-            args.screen.blit(args.duck_img, [550, 50])
-            args.screen.blit(args.chrome_logo_img, [355, 150])
+      #playsound('ui/resources/YouGotMail.mp3') This doesn't work but I want it to. It should play after the desktop has loaded
+      if (args.draw_chrome == False):
+        args.screen.blit(args.orange_img, [69, 664])
+      
+      else:
+        args.screen.blit(args.duck_img, [550, 50])
+        args.screen.blit(args.chrome_logo_img, [355, 150])
+        args.screen.blit(args.search_img, [100, -200])
+        args.screen.blit(args.mail_img, [600, 500])
+        
+        
+
+            
+            
     elif(args.level_number == 2 and args.path == "T"):
         if(args.draw_chrome):
             if(args.chrome_m_question != 6):

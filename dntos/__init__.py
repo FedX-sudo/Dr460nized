@@ -32,6 +32,14 @@ class game():
 
     self.duck_img = pygame.image.load('dntos/ui/resources/duck.png')
     self.duck_img = pygame.transform.smoothscale(self.duck_img, (840,600))
+    
+    self.search_img = pygame.image.load('dntos/ui/resources/search.png')
+    
+    self.mail_img = pygame.image.load('dntos/ui/resources/mail.png')
+    self.mail_img = pygame.transform.smoothscale(self.mail_img, (100,100))
+    
+    self.orange_img = pygame.image.load('dntos/ui/resources/orange.png')
+    self.orange_img = pygame.transform.smoothscale(self.orange_img, (53,53))
 
     self.file_explorer_img = pygame.image.load('dntos/ui/resources/file_explorer.png')
     self.file_explorer_img = pygame.transform.smoothscale(self.file_explorer_img, (50, 50))
@@ -234,6 +242,8 @@ while run:
                   args.play_level = True
               elif (args.x_quit.collidepoint(args.mouse_pos)):
                   ui.reset_screen(args)
+              elif (args.mail_img.collidepoint(args.mouse_pos)):
+                print('yes')
           except:
               pass
           try:
