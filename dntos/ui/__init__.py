@@ -53,9 +53,6 @@ def play(args):
     elif (args.draw_donut):
       pygame.draw.rect(args.screen, (255, 255, 255), pygame.Rect(10, 550, 200, 100))
       args.shutdown = args.screen.blit(args.shutdown_img, [1230, 5])
-      if (args.shutdown_img.collidepoint(mouse_pos)):
-              pygame.quit()
-              os._exit(0)
 
     if(args.level_number == 1 and args.path == "H"):
       pass
