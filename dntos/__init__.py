@@ -53,6 +53,7 @@ class game():
 
     self.shutdown_img = pygame.image.load('dntos/ui/resources/shutdown.png')
     self.shutdown_img = pygame.transform.smoothscale(self.shutdown_img, (50, 50))
+    self.shutdown = self.screen.blit(self.shutdown_img, [1230, 5])
 
     self.img_1 = pygame.image.load('dntos/ui/resources/1.png')
     self.img_1 = pygame.transform.smoothscale(self.img_1, (100, 100))
@@ -212,5 +213,8 @@ while run:
                   args.play_level = True
               elif (args.x_quit.collidepoint(args.mouse_pos)):
                   ui.reset_screen(args)
+              elif (args.shutdown.collidepoint(mouse_pos)):
+                  pygame.quit()
+                  os._exit(0)
           except:
               pass
