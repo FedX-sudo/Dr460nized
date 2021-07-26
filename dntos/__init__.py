@@ -21,62 +21,62 @@ class game():
     self.screen = pygame.display.set_mode([1280, 720])
 
 
-    self.donut_img = pygame.image.load('dntos/ui/resources/donut.png')
+    self.donut_img = pygame.image.load('dntos/ui/resources/donut.png').convert_alpha()
     self.donut_img = pygame.transform.smoothscale(self.donut_img, (50, 50))
     self.donut = self.screen.blit(self.donut_img, [10, 665])
 
-    self.chrome_img = pygame.image.load('dntos/ui/resources/chrome.png') # chrome.png is of no relation to Google or any Google patents relating to Chrome. <_<
+    self.chrome_img = pygame.image.load('dntos/ui/resources/chrome.png').convert_alpha() # chrome.png is of no relation to Google or any Google patents relating to Chrome. <_<
     self.chrome_img = pygame.transform.smoothscale(self.chrome_img, (50, 50))
     self.chrome = self.screen.blit(self.chrome_img, [70, 665]) # it is pure coincidence that all the internal variables for our browser thing have the same name as the most popular browser in the world, no correlation whatsoever.
-    self.chrome_logo_img = pygame.image.load('dntos/ui/resources/Comodo.png')
+    self.chrome_logo_img = pygame.image.load('dntos/ui/resources/Comodo.png').convert_alpha()
 
-    self.duck_img = pygame.image.load('dntos/ui/resources/duck.png')
+    self.duck_img = pygame.image.load('dntos/ui/resources/duck.png').convert_alpha()
     self.duck_img = pygame.transform.smoothscale(self.duck_img, (840,600))
     
-    self.search_img = pygame.image.load('dntos/ui/resources/search.png')
+    self.search_img = pygame.image.load('dntos/ui/resources/search.png').convert_alpha()
     
-    self.mail_img = pygame.image.load('dntos/ui/resources/mail.png')
+    self.mail_img = pygame.image.load('dntos/ui/resources/mail.png').convert_alpha()
     self.mail_img = pygame.transform.smoothscale(self.mail_img, (100,100))
     
-    self.orange_img = pygame.image.load('dntos/ui/resources/orange.png')
+    self.orange_img = pygame.image.load('dntos/ui/resources/orange.png').convert_alpha()
     self.orange_img = pygame.transform.smoothscale(self.orange_img, (53,53))
 
-    self.file_explorer_img = pygame.image.load('dntos/ui/resources/file_explorer.png')
+    self.file_explorer_img = pygame.image.load('dntos/ui/resources/file_explorer.png').convert_alpha()
     self.file_explorer_img = pygame.transform.smoothscale(self.file_explorer_img, (50, 50))
     self.file_explorer = self.screen.blit(self.file_explorer_img, [130, 665])
 
-    self.console_img = pygame.image.load('dntos/ui/resources/console.png')
+    self.console_img = pygame.image.load('dntos/ui/resources/console.png').convert_alpha()
     self.console_img = pygame.transform.smoothscale(self.console_img, (50, 50))
     self.console = self.screen.blit(self.console_img, [190, 665])
 
-    self.x_quit_img = pygame.image.load('dntos/ui/resources/x.png')
+    self.x_quit_img = pygame.image.load('dntos/ui/resources/x.png').convert_alpha()
     self.x_quit_img = pygame.transform.smoothscale(self.x_quit_img, (30, 30))
     self.x_quit = self.screen.blit(self.x_quit_img, [1230, 5])
 
-    self.hacker_img = pygame.image.load('dntos/ui/resources/hacker.png')
+    self.hacker_img = pygame.image.load('dntos/ui/resources/hacker.png').convert_alpha()
     self.hacker_img = pygame.transform.smoothscale(self.hacker_img, (200, 200))
 
-    self.training_img = pygame.image.load('dntos/ui/resources/training.png')
+    self.training_img = pygame.image.load('dntos/ui/resources/training.png').convert_alpha()
     self.training_img = pygame.transform.smoothscale(self.training_img, (200, 200))
 
-    self.shutdown_img = pygame.image.load('dntos/ui/resources/shutdown.png')
+    self.shutdown_img = pygame.image.load('dntos/ui/resources/shutdown.png').convert_alpha()
     self.shutdown_img = pygame.transform.smoothscale(self.shutdown_img, (50, 50))
 
-    self.img_1 = pygame.image.load('dntos/ui/resources/1.png')
+    self.img_1 = pygame.image.load('dntos/ui/resources/1.png').convert_alpha()
     self.img_1 = pygame.transform.smoothscale(self.img_1, (100, 100))
     self.img_1_b = self.screen.blit(self.img_1, [100, 100])
 
     # This is an image which contains all of the number 2.
-    self.img_2 = pygame.image.load('dntos/ui/resources/2.png')
+    self.img_2 = pygame.image.load('dntos/ui/resources/2.png').convert_alpha()
     self.img_2 = pygame.transform.smoothscale(self.img_2, (100, 100))
     self.img_2_b = self.screen.blit(self.img_2, [250, 100])
 
     #yes and no images
-    self.img_no = pygame.image.load('dntos/ui/resources/no.png')
+    self.img_no = pygame.image.load('dntos/ui/resources/no.png').convert_alpha()
     self.img_no = pygame.transform.smoothscale(self.img_no, (100, 100))
     self.img_no_b = self.screen.blit(self.img_no, [700, 550])
 
-    self.img_yes = pygame.image.load('dntos/ui/resources/yes.png')
+    self.img_yes = pygame.image.load('dntos/ui/resources/yes.png').convert_alpha()
     self.img_yes = pygame.transform.smoothscale(self.img_yes, (100, 100))
     self.img_yes_b = self.screen.blit(self.img_yes, [500, 550])
 
@@ -179,7 +179,7 @@ args = game()
 args.multithreading()
 run = True
 while run:
-  args.clock.tick(256)
+  args.clock.tick()
   args.mouse_pos = pygame.mouse.get_pos()
   event_list = pygame.event.get()
   for event in event_list:
