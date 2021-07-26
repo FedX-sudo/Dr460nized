@@ -51,9 +51,9 @@ def play(args):
         #console_output_text_r = font.render(console_output_text, True, (255, 255, 255))
         #screen.blit(console_output_text_r, [10, 100])
 
-    elif (args.draw_donut):
-      pygame.draw.rect(args.screen, (255, 255, 255), pygame.Rect(10, 550, 200, 100))
-      args.shutdown = args.screen.blit(args.shutdown_img, [1230, 5])
+    #elif (args.draw_donut):
+      #pygame.draw.rect(args.screen, (255, 255, 255), pygame.Rect(10, 550, 200, 100))
+      #args.shutdown = args.screen.blit(args.shutdown_img, [1230, 5])
 
     if(args.level_number == 1 and args.path == "H"):
       pass
