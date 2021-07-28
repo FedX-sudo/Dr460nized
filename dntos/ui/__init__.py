@@ -11,7 +11,7 @@ def reset_screen(args): # This is a function which closes all the windows.
   args.draw_donut = False# A random variable which does nothing. Don't delete it!
   args.draw_file_explorer = False# A random variable which does nothing. Don't delete it!
   args.draw_chrome = False # A random variable which does nothing. Don't delete it! Oh and I almost forgot, this is of no association with Google, and its purely coincidence its called chrome.
-
+  args.draw_mailbox = False # This is the mailbox for level 1
 
 def play(args):
     ''' Creates the desktop that all versions of the hacker and training route will utilize'''
@@ -44,6 +44,26 @@ def play(args):
         pygame.draw.rect(args.screen, (220, 220, 220), pygame.Rect(0, 0, 1280, 40))
         args.x_quit = args.screen.blit(args.x_quit_img, [1230, 5])
 
+        # This specifically loads the inbox and mail images that are used in level 1
+        if (args.draw_mailbox):
+            args.screen.blit(args.mailBack, [0,42])
+            if(args.mail_m_question == 1):
+                args.screen.blit(args.scam1, [200,300])
+            elif(args.mail_m_question == 2):
+                args.screen.blit(args.scam2, [200,300])
+            elif(args.mail_m_question == 3):
+                args.screen.blit(args.nscam1, [200,300])
+            elif(args.mail_m_question == 4):
+                args.screen.blit(args.scam3, [200,300])
+            elif(args.mail_m_question == 5):
+                args.screen.blit(args.scam4, [200,300])
+            elif(args.mail_m_question == 6):
+                args.screen.blit(args.scam5, [200,300])
+            elif(args.mail_m_question == 7):
+                args.screen.blit(args.nscam2, [200,300])
+            elif(args.mail_m_question == 8):
+                args.screen.blit(args.scam6, [200,300])
+
 
         #console_text_r = font.render(console_text, True, (255, 255, 255))
         #screen.blit(console_text_r, [10, 50])
@@ -74,19 +94,96 @@ def play(args):
             args.screen.blit(args.chrome_text_r, [100, 100])
     
     if(args.level_number == 1 and args.path == "T"):
-      #playsound('ui/resources/YouGotMail.mp3') This doesn't work but I want it to. It should play after the desktop has loaded
-      if (args.draw_chrome == False):
-        args.screen.blit(args.orange_img, [69, 664])
-      
-      else:
+      # if level 1 is finished, let the user know they have already completed the level
+      if (args.level_one_finished == True):
+        pygame.draw.rect(args.screen, (255, 255, 255), pygame.Rect(0, 40, 1280, 620))
+        pygame.draw.rect(args.screen, (220, 220, 220), pygame.Rect(0, 0, 1280, 40))
+        args.screen.blit(args.x_quit_img, [1230, 5])
+        args.screen.blit(args.mailWin, [0,42])
+    
+      # if the browser hasn't been opened, add an orange square around it to emphasize it 
+      elif (args.draw_chrome == False):
+          args.mail_m_question = 1
+          args.screen.blit(args.orange_img, [69, 664])
+          
+      # If the mail icon hasn't been clicked yet, draw the normal browser imagery
+      elif (args.draw_mailbox == False):
         args.screen.blit(args.duck_img, [550, 50])
         args.screen.blit(args.chrome_logo_img, [355, 150])
         args.screen.blit(args.search_img, [100, -200])
-        args.screen.blit(args.mail_img, [600, 500])
-        
-        
+        args.mail = args.screen.blit(args.mail_img, [600, 500])
 
+      # If the mail icon has been clicked, give the user the questions
+      else:
+        if(args.mail_m_question != 9):
+            # Shows the yes and no answer buttons
+            args.img_yes_c = args.screen.blit(args.img_yes, [600, 500])
+            args.img_no_c = args.screen.blit(args.img_no, [800, 500])
             
+        # The general format for the questions is that
+        # If the user selects the right answer, they go on the next question
+        # If not, they have to start over
+
+        if(args.mail_m_question == 1):
+            if(args.mail_m_choice == "y"): #correct answer
+                args.mail_m_choice = ""
+                args.mail_m_question = 2
+            elif (args.mail_m_choice == "n"): #wrong answer
+                reset_screen(args)
+            
+        elif(args.mail_m_question == 2):
+            if(args.mail_m_choice == "y"): #correct answer
+                args.mail_m_choice = ""
+                args.mail_m_question = 3
+            elif (args.mail_m_choice == "n"): #wrong answer
+                reset_screen(args)
+                
+        elif(args.mail_m_question == 3):
+            if(args.mail_m_choice == "n"): #correct answer
+                args.mail_m_choice = ""
+                args.mail_m_question = 4
+            elif (args.mail_m_choice == "y"): #wrong answer
+                reset_screen(args)
+                
+        elif(args.mail_m_question == 4):
+            if(args.mail_m_choice == "y"): #correct answer
+                args.mail_m_choice = ""
+                args.mail_m_question = 5
+            elif (args.mail_m_choice == "n"): #wrong answer
+                reset_screen(args)
+                
+        elif(args.mail_m_question == 5):
+            if(args.mail_m_choice == "y"): #correct answer
+                args.mail_m_choice = ""
+                args.mail_m_question = 6
+            elif (args.mail_m_choice == "n"): #wrong answer
+                reset_screen(args)
+                
+        elif(args.mail_m_question == 6):
+            if(args.mail_m_choice == "y"): #correct answer
+                args.mail_m_choice = ""
+                args.mail_m_question = 7
+            elif (args.mail_m_choice == "n"): #wrong answer
+                reset_screen(args)
+                
+        elif(args.mail_m_question == 7):
+            if(args.mail_m_choice == "n"): #correct answer
+                args.mail_m_choice = "" 
+                args.mail_m_question = 8
+            elif (args.mail_m_choice == "y"): #wrong answer
+                reset_screen(args)
+                
+        elif(args.mail_m_question == 8):
+            if(args.mail_m_choice == "y"): #correct answer
+                args.mail_m_choice = ""
+                args.mail_m_question = 9
+            elif (args.mail_m_choice == "n"): #wrong answer
+                reset_screen(args)
+                
+        #This loads the level complete screen and marks level one as finished
+        elif(args.mail_m_question == 9):
+            args.screen.blit(args.mailWin, [0,42])
+            args.level_one_finished = True
             
     elif(args.level_number == 2 and args.path == "T"):
         if(args.draw_chrome):

@@ -37,7 +37,26 @@ class game():
     
     self.mail_img = pygame.image.load('dntos/ui/resources/mail.png').convert_alpha()
     self.mail_img = pygame.transform.smoothscale(self.mail_img, (100,100))
+
+    # Loads the bacground for the mailbox
+    self.mailBack = pygame.image.load('dntos/ui/resources/mailBackground.png').convert_alpha()
     
+    # Loads the scam emails
+    self.scam1 = pygame.image.load('dntos/ui/resources/scame1.png').convert_alpha()
+    self.scam2 = pygame.image.load('dntos/ui/resources/scame2.png').convert_alpha()
+    self.scam3 = pygame.image.load('dntos/ui/resources/scame3.png').convert_alpha()
+    self.scam4 = pygame.image.load('dntos/ui/resources/scame4.png').convert_alpha()
+    self.scam5 = pygame.image.load('dntos/ui/resources/scame5.png').convert_alpha()
+    self.scam6 = pygame.image.load('dntos/ui/resources/scame6.png').convert_alpha()
+
+    # Loads the normal emails
+    self.nscam1 = pygame.image.load('dntos/ui/resources/nscame1.png').convert_alpha()
+    self.nscam2 = pygame.image.load('dntos/ui/resources/nscame2.png').convert_alpha()
+
+    # Loads the screen when the user answers all the level one questions correctly
+    self.mailWin = pygame.image.load('dntos/ui/resources/levelOneWin.png').convert_alpha()
+
+    # This loads a orange square that will be used to add emphasis on which icon the user should click
     self.orange_img = pygame.image.load('dntos/ui/resources/orange.png').convert_alpha()
     self.orange_img = pygame.transform.smoothscale(self.orange_img, (53,53))
 
@@ -101,6 +120,7 @@ class game():
     self.draw_donut = False
     self.draw_file_explorer = False
     self.draw_chrome = False
+    self.draw_mailbox = False
 
     self.event_list = pygame.event.get()
 
@@ -108,6 +128,11 @@ class game():
     self.chrome_text = "Password: "
     self.password_2 = "" # supposed to be empty
     self.chrome_hint_text = "Type a guess!"
+
+    # training level 1
+    self.level_one_finished = False
+    self.mail_m_question = 1
+    self.mail_m_choice = ""
 
     # training level 2
     self.chrome_m_text_1 = "field 1"
@@ -219,7 +244,6 @@ while run:
           elif (args.donut.collidepoint(args.mouse_pos)): # clicking the donut will go back to level selection
               ui.reset_screen(args)
               args.draw_donut = True
-
               args.play_level = False
               args.path_selected = False
               args.level_selected = True
@@ -242,17 +266,22 @@ while run:
                   args.play_level = True
               elif (args.x_quit.collidepoint(args.mouse_pos)):
                   ui.reset_screen(args)
-              elif (args.mail_img.collidepoint(args.mouse_pos)):
-                print('yes')
+              elif (args.mail.collidepoint(args.mouse_pos)): # clicking the mail icon in the browser will open up the inbox
+                  args.draw_mailbox = True
               elif (args.shutdown.collidepoint(mouse_pos)):
                   pygame.quit()
                   os._exit(0)
           except:
               pass
           try:
+              # If the user has clicked a yes or no button, then store that input in a variable to be used in other code
               if(args.level_number == 2 and args.path == "T" and args.draw_chrome == True and args.img_yes_b.collidepoint(args.mouse_pos)):
                   args.chrome_m_choice = "y"
               if(args.level_number == 2 and args.path == "T" and args.draw_chrome == True and args.img_no_b.collidepoint(args.mouse_pos)):
                   args.chrome_m_choice = "n"
+              if(args.level_number == 1 and args.path == "T" and args.draw_mailbox == True and args.img_yes_c.collidepoint(args.mouse_pos)):
+                  args.mail_m_choice = "y"
+              if(args.level_number == 1 and args.path == "T" and args.draw_mailbox == True and args.img_no_c.collidepoint(args.mouse_pos)):
+                  args.mail_m_choice = "n"
           except:
               pass
