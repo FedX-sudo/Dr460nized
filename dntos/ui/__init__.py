@@ -86,7 +86,7 @@ def play(args):
             args.chrome_hint_text_r = args.myfont.render(args.chrome_hint_text, True, (252, 172, 25))
             args.screen.blit(args.chrome_hint_text_r, [300, 200])
 
-            args.chrome_q_text = "Guess the number form 0 to 100. Good luck!!"
+            args.chrome_q_text = "Guess the number from 0 to 100. Good luck!!"
             args.chrome_q_text_r = args.myfont.render(args.chrome_q_text, True, (252, 172, 25))
             args.screen.blit(args.chrome_q_text_r, [300, 50])
 
@@ -202,9 +202,9 @@ def play(args):
                     args.chrome_m_question = 1
                     reset_screen(args)
             elif(args.chrome_m_question == 2):
-                args.chrome_m_text_1 = "You search for an image editor called gimp recommended by a friend."
+                args.chrome_m_text_1 = "You search for an image editor called Gimp recommended by a friend."
                 args.chrome_m_text_2 = "You see that you can download it from \"softwareforall.net\"" # downloading good software from a random site
-                args.chrome_m_text_3 = "The website however, looks wierd. Should you download it?"
+                args.chrome_m_text_3 = "The website, however, looks wierd. Should you download it?"
                 if(args.chrome_m_choice == "n"): # correct choice
                     args.chrome_m_choice = ""
                     args.chrome_m_question = 3
@@ -213,8 +213,8 @@ def play(args):
                     args.chrome_m_question = 1
                     reset_screen(args)
             elif(args.chrome_m_question == 3):
-                args.chrome_m_text_1 = "You want to analyse your network and learn how it works."
-                args.chrome_m_text_2 = "You search and find a program called wireshark on \"wireshark.org\"."
+                args.chrome_m_text_1 = "You want to analyze your network and learn how it works."
+                args.chrome_m_text_2 = "You search Google and find a program called Wireshark on \"wireshark.org\"."
                 args.chrome_m_text_3 = "The software is opensource and has a lot of history. Should you download it?"
                 if(args.chrome_m_choice == "y"): # correct choice
                     args.chrome_m_choice = ""
@@ -224,8 +224,8 @@ def play(args):
                     args.chrome_m_question = 1
                     reset_screen(args)
             elif(args.chrome_m_question == 4):
-                args.chrome_m_text_1 = "You want to edit some photos using photoshop but have no money :("
-                args.chrome_m_text_2 = "You find a website which claims to give it for free."
+                args.chrome_m_text_1 = "You want to edit some photos using Photoshop but have no money :("
+                args.chrome_m_text_2 = "You find a website which claims to let you download it for free."
                 args.chrome_m_text_3 = "Should you download it?"
                 if(args.chrome_m_choice == "n"): # correct choice
                     args.chrome_m_choice = ""
